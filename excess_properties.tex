@@ -1,0 +1,131 @@
+\documentclass[review]{elsarticle}
+
+\usepackage{lineno,hyperref}
+\usepackage{pdflscape}
+\modulolinenumbers[5]
+
+\journal{Geochemica and Cosmochemica Acta}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%% Elsevier bibliography styles
+%%%%%%%%%%%%%%%%%%%%%%%
+%% To change the style, put a % in front of the second line of the current style and
+%% remove the % from the second line of the style you would like to use.
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Numbered
+%\bibliographystyle{model1-num-names}
+
+%% Numbered without titles
+%\bibliographystyle{model1a-num-names}
+
+%% Harvard
+\bibliographystyle{model2-names.bst}\biboptions{authoryear}
+
+%% Vancouver numbered
+%\usepackage{numcompress}\bibliographystyle{model3-num-names}
+
+%% Vancouver name/year
+%\usepackage{numcompress}\bibliographystyle{model4-names}\biboptions{authoryear}
+
+%% APA style
+%\bibliographystyle{model5-names}\biboptions{authoryear}
+
+%% AMA style
+%\usepackage{numcompress}\bibliographystyle{model6-num-names}
+
+%% `Elsevier LaTeX' style
+%\bibliographystyle{elsarticle-num}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\begin{frontmatter}
+
+\title{Excess properties of solid solutions: Modelling phase relations and seismic velocities in the mantle}
+%\tnotetext[mytitlenote]{Fully documented templates are available in the elsarticle package on \href{http://www.ctan.org/tex-archive/macros/latex/contrib/elsarticle}{CTAN}.}
+
+%% Group authors per affiliation:
+\author{R. Myhill, C. Beyer}
+\address{Bayerisches Geoinstitut, Universit\"{a}t Bayreuth, Universit\"{a}tsstrasse 30, 95447 Bayreuth, Germany}
+\cortext[mycorrespondingauthor]{Corresponding author: R. Myhill}
+\ead{myhill.bob@gmail.com}
+
+\begin{abstract}
+
+\end{abstract}
+
+\begin{keyword}
+high pressure \sep excess properties
+\end{keyword}
+
+\end{frontmatter}
+
+\linenumbers
+
+\section{Introduction}
+
+\section{Motivation}
+\subsection{Bulk moduli}
+The regular solution model implicitly defines many of the thermoelastic properties of solid solutions. For example, it defines the bulk modulus as the Reuss average of the endmembers:
+
+\begin{eqnarray}
+K_T &=& -V\left( \frac{\partial P}{\partial V}\right) \\
+ &=& \left( \sum_i n_i V_{i} + V_{\textrm{excess}}\right) \left( \frac{1}{\sum_i\left(n_i \frac{V_{i}}{K_{Ti}} \right)} + \frac{\partial P}{\partial V_{\textrm{excess}}} \right) 
+\end{eqnarray}
+
+\noindent $V_{\textrm{excess}}$ is often approximated as zero, or as a scalar term with no pressure dependence. There are potential problems with this approximation:
+\begin{itemize}
+\item Excess enthalpy terms may change sign and/or become very large as pressure increases. For example, pyrope-grossular in Green et al., 2012 has an enthalpy interaction of 31 kJ/mol, and an excess volume of 0.164 kJ/kbar/mol, leading to a doubling of enthalpy over its stability field. 
+\item The model predicts an excess bulk modulus with the same sign as the excess volume, conflicting with the Anderson-Anderson (1970) rule of thumb that $V\, K_T = c$ 
+\item Higher order excess volume terms to fit excess bulk moduli cause large deviations from a given equation of state at high pressure, as polynomial expansions of equations of state converge very slowly.
+\end{itemize}
+
+\noindent In many circumstances, these shortcomings are unimportant. However, there is a fundamental need to adjust the solid solution model where
+\begin{itemize}
+\item the stability range of the solid solution extends over pressure regimes large enough to contribute significantly to changes in excess enthalpy inconsistent with data, or
+\item mineral phases exhibit significant excess bulk moduli. The latter is especially important for those studies where velocities are obtained from the models.
+\end{itemize}
+
+\subsection{Shear moduli}
+Thermodynamic variables do not include any input/constraints on shear moduli, which appear to deviate significantly from Voigt and Reuss averages.
+
+\section{Strategies}
+Taylor expansion of EoS converges extremely slowly, and leads to rapid divergence at pressures greater than the last crossing. This is part of the reason that \cite{SLB2011} set excess volumes as zero. Thus, simply adding a bulk modulus term is inappropriate.
+
+Best fit elastic properties for an ideal intermediate can be found, from which deviations can be applied.  
+
+
+\section{Excess properties}
+Most existing solid solution models define an excess enthalpy, entropy and volume, which leads to the following expressions for thermodynamic potentials:
+\begin{eqnarray}
+\mathcal{H}_{\textrm{ss}} &= \sum_in_i\mathcal{H}_i + \mathcal{H}_{\textrm{excess}} + PV_{\textrm{excess}}\\
+\mathcal{S}_{\textrm{ss}} &= \sum_in_i\mathcal{S}_i + \mathcal{S}_{\textrm{conf}} + \mathcal{S}_{\textrm{excess}} \\
+\mathcal{G}_{\textrm{ss}} &= \mathcal{H}_{\textrm{ss}} - T\mathcal{S}_{\textrm{ss}}\\
+V_{\textrm{ss}} &= \sum_in_iV_i + V_{\textrm{excess}}
+\end{eqnarray}
+The derivatives of volume with respect to pressure and temperature can then be calculated
+\begin{eqnarray}
+\alpha_{P,\textrm{ss}} &= \frac{1}{V}\left(\frac{\partial V}{\partial T}\right)_P = \left( \frac{1}{V_{\textrm{ss}}}\right)\left( \sum_i\left(n_i\,\alpha_i\,V_i \right) \right) \\
+K_{T,\textrm{ss}} &= -V\left( \frac{\partial P}{\partial V} \right)_T = V_{\textrm{ss}} \left( \left(\sum_i \frac{n_i V_{i}}{K_{Ti}} \right)^{-1} - \frac{\partial P}{\partial V_{\textrm{excess}}} \right) \\
+K'_{T,\textrm{ss}} &= -\frac{\partial}{\partial P} \left (V\left( \frac{\partial P}{\partial V} \right)_T \right) \sim V_{\textrm{ss}} \left(\sum_i \frac{n_i V_{i}}{K'_{Ti} + 1.} \right)^{-1}
+\end{eqnarray}
+
+Making the approximation that the excess entropy has no temperature dependence
+\begin{eqnarray}
+C_{P,\textrm{ss}} &= \sum_in_iC_{Pi}\\
+C_{V, \textrm{ss}} &= C_{P,\textrm{ss}} - V_{\textrm{ss}}\,T\,\alpha_{\textrm{ss}}^{2}\,K_{T,\textrm{ss}} \\
+K_{S,\textrm{ss}} &= K_{T,\textrm{ss}} \,\frac{C_{P,\textrm{ss}}}{C_{V,\textrm{ss}}}\\
+\gamma_{\textrm{ss}} &= \frac{\alpha_{\textrm{ss}}\,K_{T,\textrm{ss}}\,V_{\textrm{ss}}}{C_{V, \textrm{ss}}}
+\end{eqnarray}
+
+\section{Conclusions}
+
+
+
+\clearpage
+\section*{References}
+
+\bibliography{references_xs}
+
+\end{document}
