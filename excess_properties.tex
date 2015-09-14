@@ -42,7 +42,7 @@
 
 \begin{frontmatter}
 
-\title{Excess properties of solid solutions: Modelling phase relations and seismic velocities in the mantle}
+\title{Modelling excess properties of mineral and melt solutions over large P-T ranges: implications for phase relations and seismic velocities in the mantle}
 %\tnotetext[mytitlenote]{Fully documented templates are available in the elsarticle package on \href{http://www.ctan.org/tex-archive/macros/latex/contrib/elsarticle}{CTAN}.}
 
 %% Group authors per affiliation:
@@ -52,6 +52,10 @@
 \ead{myhill.bob@gmail.com}
 
 \begin{abstract}
+  Thermodynamic models of solid and liquid solutions in the Earth Sciences are increasingly used to calculate phase relations and seismic properties over large pressure and temperature ranges. Calculations often span over 1000 K and 5 GPa in studies of exhumation processes and metamorphism in subduction zones. Research into mantle phase relations and differentiation of the early Earth frequently involves calculations over 3000 K and 100 GPa. Despite spanning such huge ranges, a common approximation is that excess thermodynamic derivatives within solid solutions (entropy and volume) are pressure-temperature invariant. If these excesses are large, the approximation can result in large errors in gibbs free energy at high pressure and temperature, and errors in seismic velocities even within the range of calibration conditions. 
+
+  In this paper, we present a solution to this problem by extending the subregular Margules mixing model using intermediate compounds to define the thermodynamic properties of solid solutions. Mathematical derivations are provided for excess properties ($H^{ex}$, $S^{ex}$, $V^{ex}$) and their pressure and temperature derivatives ($K_T^{ex}$, $\alpha^{ex}$, $Cp^{ex}$ etc.). We provide examples of garnet and melt solutions, showing that inclusion of a variable excess volume is vital to simulate observed phase relations and seismic velocities. Heuristics are suggested for intermediate compounds where individual thermodynamic properties are poorly constrained.
+
 
 \end{abstract}
 
@@ -64,6 +68,11 @@ high pressure \sep excess properties
 \linenumbers
 
 \section{Introduction}
+
+Thermodynamic models of solid and liquid solutions in the Earth Sciences are an integral part of 
+
+
+  The approximation of constant positive excess volume implicitly yields an excess positive bulk modulus and negative thermal expansion, in conflict with both intuition and experimental observations. This is a particular problem where thermodynamic data are used over pressure ranges exceeding a few GPa, and where they are used to compute seismic wave velocities. 
 
 \section{Motivation}
 \subsection{Bulk moduli}
@@ -96,28 +105,72 @@ Taylor expansion of EoS converges extremely slowly, and leads to rapid divergenc
 Best fit elastic properties for an ideal intermediate can be found, from which deviations can be applied.  
 
 
-\section{Excess properties}
-Most existing solid solution models define an excess enthalpy, entropy and volume, which leads to the following expressions for thermodynamic potentials:
+\section{The Extended Subregular Margules (ESM) model}
+The subregular Margules mixing model within a binary system approximates excess Gibbs free energies at any given pressure and temperature as a cubic function of composition \citep{HW1989}:
+\begin{equation}
+  \mathcal{G}^{xs} = W_{12} X_1X_2^2 + W_{21} X_1^2X_2 
+\end{equation}
+The terms $W_{ij}$ describing the interaction between endmembers $i$ and $j$ are normally described by a function of the form
+\begin{equation}
+  W_{ij} = a_{ij} + b_{ij}P + c_{ij}T
+\end{equation}
+dropbox
+In the ESM model, we instead define properties for each binary pair based on two intermediate compounds with compositions $X_i = X_j = 0.5$. For the special case of a symmetric mixing model, the properties for both intermediates are the properties of a compound with that composition; otherwise, both compounds are fictional. The interaction terms are now defined as:
+
+\begin{equation}
+  W^{\mathcal{G}}_{ij} = 4(\mathcal{G}_{ij} + T\mathcal{S}^{\textrm{conf}}_{ij}) - 2(\mathcal{G}_i + \mathcal{G}_j)
+\end{equation}
+
+\noindent where $\mathcal{S}^{\textrm{conf}}_{ij}$ is the configurational entropy of the intermediate compound, which depends on the number of sites on which mixing occurs. For a solution with $n$ independent endmembers, and ignoring ternary terms, the excess nonconfigurational Gibbs free energy is \citep{HW1989} 
+
+\begin{equation}
+  \mathcal{G}^{xs} = \sum_{i=1}^n \sum_{j>1}^n X_i X_j \left ( W_{ij} X_j + W_{ji} X_i + 0.5 (W_{ij} + W_{ji}) \sum_k^n (1-\delta_{ik})(1-\delta_{jk}) X_k \right)
+  \label{xs}
+\end{equation}
+
+Using this new model, we can now define the properties of the solid solution as follows:
+
 \begin{eqnarray}
-\mathcal{H}_{\textrm{ss}} &= \sum_in_i\mathcal{H}_i + \mathcal{H}_{\textrm{excess}} + PV_{\textrm{excess}}\\
-\mathcal{S}_{\textrm{ss}} &= \sum_in_i\mathcal{S}_i + \mathcal{S}_{\textrm{conf}} + \mathcal{S}_{\textrm{excess}} \\
-\mathcal{G}_{\textrm{ss}} &= \mathcal{H}_{\textrm{ss}} - T\mathcal{S}_{\textrm{ss}}\\
-V_{\textrm{ss}} &= \sum_in_iV_i + V_{\textrm{excess}}
-\end{eqnarray}
-The derivatives of volume with respect to pressure and temperature can then be calculated
-\begin{eqnarray}
-\alpha_{P,\textrm{ss}} &= \frac{1}{V}\left(\frac{\partial V}{\partial T}\right)_P = \left( \frac{1}{V_{\textrm{ss}}}\right)\left( \sum_i\left(n_i\,\alpha_i\,V_i \right) \right) \\
-K_{T,\textrm{ss}} &= -V\left( \frac{\partial P}{\partial V} \right)_T = V_{\textrm{ss}} \left( \left(\sum_i \frac{n_i V_{i}}{K_{Ti}} \right)^{-1} - \frac{\partial P}{\partial V_{\textrm{excess}}} \right) \\
-K'_{T,\textrm{ss}} &= -\frac{\partial}{\partial P} \left (V\left( \frac{\partial P}{\partial V} \right)_T \right) \sim V_{\textrm{ss}} \left(\sum_i \frac{n_i V_{i}}{K'_{Ti} + 1.} \right)^{-1}
+\mathcal{G} = \sum_i X_i \mathcal{G}_i + \mathcal{G}^{xs} \\
+\mathcal{H} = \sum_i X_i \mathcal{H}_i + \mathcal{H}^{xs} \\
+\mathcal{S} = \sum_i X_i \mathcal{S}_i + \mathcal{S}^{xs} \\
+\mathcal{V} = \sum_i X_i \mathcal{V}_i + \mathcal{V}^{xs} \\
+C_P = \sum_i X_i C_P  + T \left( \frac{\partial \mathcal{S}}{\partial T} \right)_P^{xs} \\
+\alpha = \frac{1}{\mathcal{V}} \left ( \sum_i X_i \alpha_i \mathcal{V}_i + \left( \frac{\partial \mathcal{V}}{\partial T} \right)_P^{xs} \right) \\
+K_T = \frac{\mathcal{V}}{\sum_i \frac{X_i \mathcal{V}_i }{K_{Ti}} - \left( \frac{\partial \mathcal{V}}{\partial P} \right)_T^{xs} } \\
+C_V = C_P - \mathcal{V} T \alpha^2 K_T \\
+K_S = K_T \frac{C_P}{C_V} \\
+\gamma = \frac{\alpha K_T \mathcal{V}}{C_V}   
 \end{eqnarray}
 
-Making the approximation that the excess entropy has no temperature dependence
+With the exception of the enthalpy excess, excess terms ($\mathcal{S}^{xs}$, $\mathcal{V}^{xs}$ etc) are derived in the same way as the excess Gibbs free energy (Equation \ref{xs}), with interaction terms defined as follows:
+
 \begin{eqnarray}
-C_{P,\textrm{ss}} &= \sum_in_iC_{Pi}\\
-C_{V, \textrm{ss}} &= C_{P,\textrm{ss}} - V_{\textrm{ss}}\,T\,\alpha_{\textrm{ss}}^{2}\,K_{T,\textrm{ss}} \\
-K_{S,\textrm{ss}} &= K_{T,\textrm{ss}} \,\frac{C_{P,\textrm{ss}}}{C_{V,\textrm{ss}}}\\
-\gamma_{\textrm{ss}} &= \frac{\alpha_{\textrm{ss}}\,K_{T,\textrm{ss}}\,V_{\textrm{ss}}}{C_{V, \textrm{ss}}}
+  W^{\mathcal{S}}_{ij} = 4 (\mathcal{S}_{ij} - \mathcal{S}^{\textrm{conf}}_{ij}) - 2(\mathcal{S}_i + \mathcal{S}_j) \\
+  W^{\mathcal{V}}_{ij} = 4 \mathcal{V}_{ij} - 2(\mathcal{V}_i + \mathcal{V}_j) \\
+  W^{\partial\mathcal{V}/\partial P}_{ij} = 4 \mathcal{V}_{ij}/K_{T{ij}} - 2(\mathcal{V}_{i}/K_{T{i}} + \mathcal{V}_{j}/K_{T{j}}) \\
+  W^{\partial\mathcal{V}/\partial T}_{ij} = 4 \alpha_{ij} \mathcal{V}_{ij} - 2(\alpha_{i} \mathcal{V}_i + \alpha_{j} \mathcal{V}_j) \\
+  W^{\partial\mathcal{S}/\partial T}_{ij} = \frac{4 C_{P{ij}} - 2(C_{P{i}} + C_{P{j}})}{T} 
 \end{eqnarray}
+
+Finally, excess enthalpy is defined as
+\begin{equation}
+ \mathcal{H}^{xs} = \mathcal{G}^{xs} + T\mathcal{S}^{xs}
+\end{equation}
+
+\subsection{Heuristics}
+It is often the case that endmembers are particularly well studied, while the properties of the solid solution are constrained only by enthalpies of solution and volumes at room temperature and pressure. In the absence of other data, heuristics are required to constrain the properties of the intermediate compounds. In this study, we suggest that the following heuristics be used:
+\begin{eqnarray}
+  \mathcal{S}_{ij} = 0.5(\mathcal{S}_i + \mathcal{S}_j) + \mathcal{S}^{\textrm{conf}}_{ij} \\
+  C_{P{ij}} = 0.5(C_{P{i}} + C_{P{j}})
+\end{eqnarray}
+
+\cite{AA1970} suggested that $K_T \mathcal{V} = c$ provided a useful rule of thumb to estimate bulk moduli of endmembers where only volumes were known. However, it is unlikely that the compression of intermediate species with excess volumes behave like their respective endmembers. Mixing of elements with different ionic radii and chemical bonding on sites affects the mechanisms of compression, and amplifies the effects of changing volume on compressibility. A positive excess volume implies a more open structure which will be more prone to volume decrease on compression. The opposite is true of a negative excess volume.
+
+\begin{equation}
+K'_{T} = -\frac{\partial}{\partial P} \left (\mathcal{V}\left( \frac{\partial P}{\partial \mathcal{V}} \right)_T \right) \sim \mathcal{V} \left(\sum_i \frac{X_i \mathcal{V}_i}{K'_{Ti} + 1} \right)^{-1} - 1
+\end{equation}
+
 
 \section{Conclusions}
 
