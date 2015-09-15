@@ -54,7 +54,7 @@
 \begin{abstract}
   Thermodynamic models of solid and liquid solutions in the Earth Sciences are increasingly used to calculate phase relations and seismic properties over large pressure and temperature ranges. Calculations often span over 1000 K and 5 GPa in studies of exhumation processes and metamorphism in subduction zones. Research into mantle phase relations and differentiation of the early Earth frequently involves calculations over 3000 K and 100 GPa. Despite spanning such huge ranges, a common approximation is that excess thermodynamic derivatives within solid solutions (entropy and volume) are pressure-temperature invariant. If these excesses are large, the approximation can result in large errors in gibbs free energy at high pressure and temperature, and errors in seismic velocities even within the range of calibration conditions. 
 
-  In this paper, we present a solution to this problem by extending the subregular Margules mixing model using intermediate compounds to define the thermodynamic properties of solid solutions. Mathematical derivations are provided for excess properties ($H^{ex}$, $S^{ex}$, $V^{ex}$) and their pressure and temperature derivatives ($K_T^{ex}$, $\alpha^{ex}$, $Cp^{ex}$ etc.). We provide examples of garnet and melt solutions, showing that inclusion of a variable excess volume is vital to simulate observed phase relations and seismic velocities. Heuristics are suggested for intermediate compounds where individual thermodynamic properties are poorly constrained.
+  In this paper, we present a solution to this problem by extending the subregular Margules mixing model using intermediate compounds to define the thermodynamic properties of solid solutions. Mathematical derivations are provided for excess properties ($H^{ex}$, $S^{ex}$, $V^{ex}$) and their pressure and temperature derivatives ($K_T^{ex}$, $\alpha^{ex}$, $Cp^{ex}$ etc.). We provide examples of pyroxene, garnet and melt solutions, showing that inclusion of a variable excess volume is vital to simulate observed phase relations and seismic velocities. Heuristics are suggested for intermediate compounds where individual thermodynamic properties are poorly constrained.
 
 
 \end{abstract}
@@ -74,35 +74,8 @@ Thermodynamic models of solid and liquid solutions in the Earth Sciences are an 
 
   The approximation of constant positive excess volume implicitly yields an excess positive bulk modulus and negative thermal expansion, in conflict with both intuition and experimental observations. This is a particular problem where thermodynamic data are used over pressure ranges exceeding a few GPa, and where they are used to compute seismic wave velocities. 
 
-\section{Motivation}
-\subsection{Bulk moduli}
-The regular solution model implicitly defines many of the thermoelastic properties of solid solutions. For example, it defines the bulk modulus as the Reuss average of the endmembers:
+In many circumstances, these shortcomings are unimportant. However, there is a fundamental need to adjust the solid solution model where the stability range of the solid solution extends over pressure regimes large enough to contribute significantly to changes in excess enthalpy inconsistent with data, or mineral phases exhibit significant excess bulk moduli. The latter is especially important for those studies where velocities are obtained from the models.
 
-\begin{eqnarray}
-K_T &=& -V\left( \frac{\partial P}{\partial V}\right) \\
- &=& \left( \sum_i n_i V_{i} + V_{\textrm{excess}}\right) \left( \frac{1}{\sum_i\left(n_i \frac{V_{i}}{K_{Ti}} \right)} + \frac{\partial P}{\partial V_{\textrm{excess}}} \right) 
-\end{eqnarray}
-
-\noindent $V_{\textrm{excess}}$ is often approximated as zero, or as a scalar term with no pressure dependence. There are potential problems with this approximation:
-\begin{itemize}
-\item Excess enthalpy terms may change sign and/or become very large as pressure increases. For example, pyrope-grossular in Green et al., 2012 has an enthalpy interaction of 31 kJ/mol, and an excess volume of 0.164 kJ/kbar/mol, leading to a doubling of enthalpy over its stability field. 
-\item The model predicts an excess bulk modulus with the same sign as the excess volume, conflicting with the Anderson-Anderson (1970) rule of thumb that $V\, K_T = c$ 
-\item Higher order excess volume terms to fit excess bulk moduli cause large deviations from a given equation of state at high pressure, as polynomial expansions of equations of state converge very slowly.
-\end{itemize}
-
-\noindent In many circumstances, these shortcomings are unimportant. However, there is a fundamental need to adjust the solid solution model where
-\begin{itemize}
-\item the stability range of the solid solution extends over pressure regimes large enough to contribute significantly to changes in excess enthalpy inconsistent with data, or
-\item mineral phases exhibit significant excess bulk moduli. The latter is especially important for those studies where velocities are obtained from the models.
-\end{itemize}
-
-\subsection{Shear moduli}
-Thermodynamic variables do not include any input/constraints on shear moduli, which appear to deviate significantly from Voigt and Reuss averages.
-
-\section{Strategies}
-Taylor expansion of EoS converges extremely slowly, and leads to rapid divergence at pressures greater than the last crossing. This is part of the reason that \cite{SLB2011} set excess volumes as zero. Thus, simply adding a bulk modulus term is inappropriate.
-
-Best fit elastic properties for an ideal intermediate can be found, from which deviations can be applied.  
 
 
 \section{The Extended Subregular Margules (ESM) model}
@@ -136,8 +109,8 @@ Using this new model, we can now define the properties of the solid solution as 
 \mathcal{S} = \sum_i X_i \mathcal{S}_i + \mathcal{S}^{xs} \\
 \mathcal{V} = \sum_i X_i \mathcal{V}_i + \mathcal{V}^{xs} \\
 C_P = \sum_i X_i C_P  + T \left( \frac{\partial \mathcal{S}}{\partial T} \right)_P^{xs} \\
-\alpha = \frac{1}{\mathcal{V}} \left ( \sum_i X_i \alpha_i \mathcal{V}_i + \left( \frac{\partial \mathcal{V}}{\partial T} \right)_P^{xs} \right) \\
-K_T = \frac{\mathcal{V}}{\sum_i \frac{X_i \mathcal{V}_i }{K_{Ti}} - \left( \frac{\partial \mathcal{V}}{\partial P} \right)_T^{xs} } \\
+\alpha = \frac{1}{\mathcal{V}} \left ( \sum_i X_i \alpha_i \mathcal{V}_i + \left( \frac{\partial \mathcal{V}}{\partial T} \right)_P^{xs} \right) \label{alpha} \\
+K_T = \frac{\mathcal{V}}{\sum_i \frac{X_i \mathcal{V}_i }{K_{Ti}} - \left( \frac{\partial \mathcal{V}}{\partial P} \right)_T^{xs} } \label{K_T} \\
 C_V = C_P - \mathcal{V} T \alpha^2 K_T \\
 K_S = K_T \frac{C_P}{C_V} \\
 \gamma = \frac{\alpha K_T \mathcal{V}}{C_V}   
@@ -162,15 +135,50 @@ Finally, excess enthalpy is defined as
 It is often the case that endmembers are particularly well studied, while the properties of the solid solution are constrained only by enthalpies of solution and volumes at room temperature and pressure. In the absence of other data, heuristics are required to constrain the properties of the intermediate compounds. In this study, we suggest that the following heuristics be used:
 \begin{eqnarray}
   \mathcal{S}_{ij} = 0.5(\mathcal{S}_i + \mathcal{S}_j) + \mathcal{S}^{\textrm{conf}}_{ij} \\
-  C_{P{ij}} = 0.5(C_{P{i}} + C_{P{j}})
+  C_{P{ij}} = 0.5(C_{P{i}} + C_{P{j}}) \\
+  \alpha_{ij} = 0.5 \mathcal{V} \left(\frac{\alpha_i}{\mathcal{V}_i} + \frac{\alpha_j}{\mathcal{V}_j}\right)\\
+  K'_{T} = -\frac{\partial}{\partial P} \left (\mathcal{V}\left( \frac{\partial P}{\partial \mathcal{V}} \right)_T \right) \sim \mathcal{V} \left(\sum_i \frac{X_i \mathcal{V}_i}{K'_{Ti} + 1} \right)^{-1} - 1
 \end{eqnarray}
 
-\cite{AA1970} suggested that $K_T \mathcal{V} = c$ provided a useful rule of thumb to estimate bulk moduli of endmembers where only volumes were known. However, it is unlikely that the compression of intermediate species with excess volumes behave like their respective endmembers. Mixing of elements with different ionic radii and chemical bonding on sites affects the mechanisms of compression, and amplifies the effects of changing volume on compressibility. A positive excess volume implies a more open structure which will be more prone to volume decrease on compression. The opposite is true of a negative excess volume.
+If excess volumes are zero, the bulk modulus is given by Equation \ref{K_T}, with the differential term equal to zero. However, non-zero excess volumes are unlikely to remain constant with pressure and temperature. Mixing of elements with different ionic radii and chemical bonding on sites affects not only the packing efficiency, but also the mechanisms of compression. A positive excess volume implies a more open structure which will be more prone to volume decrease on compression.
+
+We suggest that, in the absence of other data it should be assumed that $\left( \frac{\partial \mathcal{V}}{\partial P} \right)_T^{xs} \rightarrow 0$ as $P \rightarrow \infty$. Bulk moduli for intermediates can then be constrained. 
 
 \begin{equation}
-K'_{T} = -\frac{\partial}{\partial P} \left (\mathcal{V}\left( \frac{\partial P}{\partial \mathcal{V}} \right)_T \right) \sim \mathcal{V} \left(\sum_i \frac{X_i \mathcal{V}_i}{K'_{Ti} + 1} \right)^{-1} - 1
+  K_{T} \sim 0.5(K_{Ti} + K_{Tj}) + a \left(\frac{K_{Ti}\mathcal{V}_{j} + K_{Tj}\mathcal{V}_{j}}{\mathcal{V}_{i} + \mathcal{V}_{j}} - 0.5*(K_{Ti} + K_{Tj})\right)
+  \label{K_T_heuristic}
 \end{equation}
 
+The factor $a$ before the second term on the RHS of Equation \ref{K_T_heuristic} modifies the rule of thumb proposed by \cite{AA1970} to estimate the compressibility of endmembers based on their molar volumes. A value of $a=4$ serves as a good first approximation to that required to satisfy our proposed heuristic.
+
+\section{Examples}
+\subsection{Pyroxene}
+Our first example is that of jadeite-aegirine pyroxene, an almost ideal solid solution (from a volumetric perspective). We use this model to illustrate that even when excess volumes are extremely small, excess bulk moduli are resolvable. The experimental data is that of \cite{NBLBT2006}, and the equation of state used is the Modified Tait \citep{HP2011}.
+
+\begin{table}[]
+\centering
+\caption{Jadeite-Aegirine mixing parameters to fit the room temperature data of \cite{NBLBT2006}. $K''_0 = -K'_0/K_0$.}
+\label{jd_aeg}
+\begin{tabular}{lllll}
+                   & jadeite              & aegirine             & jd50ae50             & ae50jd50             \\
+$V_0$ (cm$^3$/mol) & 60.5640 $\pm$ 0.0001 & 64.6261 $\pm$ 0.0004 & 62.3641 $\pm$ 0.0005 & 62.4522 $\pm$ 0.0005 \\
+$K_0$ (GPa)        & 133.5 $\pm$ 0.2      & 116.0 $\pm$ 0.2      & 124.8 $\pm$ 0.5      & 126.7 $\pm$ 0.4      \\
+$K'_0$             & 4.6                  & 4.4                  & 4.4785               & 4.4785              
+\end{tabular}
+\end{table}
+
+
+\subsection{Garnet}
+Our second example is the pyrope-grossular join, which is well-known to have significant non-ideality and volumes of mixing. Here we use the excess volume of \cite{DCW2015}, approximating the solid solution as symmetric and using the heuristics described above.
+
+
+\subsection{Fe-O melt}
+
+Our final example is that of Fe-FeO melt. This liquid solution is extremely important for understanding partitioning of oxygen into the Earth's core. At pressures $<$25 GPa, the solution exhibits signficant non-ideality, with a large miscibility gap between ionic and metallic Fe-O liquids \citep{Frostetal2010}. As pressure increases, this miscibility gap disappears, indicating a negative excess volume of mixing. \cite{Kom2014} uses an ideal model at high pressure, and obtains a more-or-less reasonable fit to the available experimental data. 
+
+To model processes of mantle differentiation and core formation, it would be extremely useful to have a single model describing the properties of melts over relevant pressure and temperature ranges. Clearly a high pressure ideal model cannot be reconciled with a low pressure model with large excess volumes of mixing without incorporating excess bulk moduli and thermal expansivities. 
+
+\cite{DKS2013}
 
 \section{Conclusions}
 
