@@ -46,7 +46,7 @@
 %\tnotetext[mytitlenote]{Fully documented templates are available in the elsarticle package on \href{http://www.ctan.org/tex-archive/macros/latex/contrib/elsarticle}{CTAN}.}
 
 %% Group authors per affiliation:
-\author{R. Myhill, C. Beyer}
+\author{R. Myhill}
 \address{Bayerisches Geoinstitut, Universit\"{a}t Bayreuth, Universit\"{a}tsstrasse 30, 95447 Bayreuth, Germany}
 \cortext[mycorrespondingauthor]{Corresponding author: R. Myhill}
 \ead{myhill.bob@gmail.com}
@@ -76,7 +76,7 @@ Thermodynamic models of solid and liquid solutions in the Earth Sciences are an 
 
 In many circumstances, these shortcomings are unimportant. However, there is a fundamental need to adjust the solid solution model where the stability range of the solid solution extends over pressure regimes large enough to contribute significantly to changes in excess enthalpy inconsistent with data, or mineral phases exhibit significant excess bulk moduli. The latter is especially important for those studies where velocities are obtained from the models.
 
-
+The models in this study are all implemented in the open software \emph{burnman}, a mineral physics toolkit written in python. The software, first described in \cite{CHRU2014}, was originally designed for seismic velocity calculations. It has since been augmented with thermodynamics functionality, including a range of different models for solid solutions.
 
 \section{The Extended Subregular Margules (ESM) model}
 The subregular Margules mixing model within a binary system approximates excess Gibbs free energies at any given pressure and temperature as a cubic function of composition \citep{HW1989}:
@@ -145,20 +145,27 @@ If excess volumes are zero, the bulk modulus is given by Equation \ref{K_T}, wit
 We suggest that, in the absence of other data it should be assumed that $\left( \frac{\partial \mathcal{V}}{\partial P} \right)_T^{xs} \rightarrow 0$ as $P \rightarrow \infty$. Bulk moduli for intermediates can then be constrained. 
 
 \begin{equation}
-  K_{T} \sim 0.5(K_{Ti} + K_{Tj}) + a \left(\frac{K_{Ti}\mathcal{V}_{j} + K_{Tj}\mathcal{V}_{j}}{\mathcal{V}_{i} + \mathcal{V}_{j}} - 0.5*(K_{Ti} + K_{Tj})\right)
+  K_{T} \sim 0.5(K_{Ti} + K_{Tj}) + c \left(\frac{K_{Ti}\mathcal{V}_{j} + K_{Tj}\mathcal{V}_{j}}{\mathcal{V}_{i} + \mathcal{V}_{j}} - 0.5(K_{Ti} + K_{Tj})\right)
   \label{K_T_heuristic}
 \end{equation}
 
-The factor $a$ before the second term on the RHS of Equation \ref{K_T_heuristic} modifies the rule of thumb proposed by \cite{AA1970} to estimate the compressibility of endmembers based on their molar volumes. A value of $a=4$ serves as a good first approximation to that required to satisfy our proposed heuristic.
+The factor $c$ before the second term on the RHS of Equation \ref{K_T_heuristic} modifies the rule of thumb proposed by \cite{AA1970} to estimate the compressibility of endmembers based on their molar volumes. Typically, values of $c$ from 4 to 12 satisfy our proposed heuristic.
 
 \section{Examples}
 \subsection{Pyroxene}
-Our first example is that of jadeite-aegirine pyroxene, an almost ideal solid solution (from a volumetric perspective). We use this model to illustrate that even when excess volumes are extremely small, excess bulk moduli are resolvable. The experimental data is that of \cite{NBLBT2006}, and the equation of state used is the Modified Tait \citep{HP2011}.
+Our first example is that of jadeite-aegirine pyroxene, an almost ideal solid solution (from a volumetric perspective). We use this model to illustrate that even when excess volumes are extremely small, excess bulk moduli are resolvable. The experimental data is that of \cite{NBLBT2006}, and the equation of state used is the Modified Tait \citep{HP2011}. The fit to the volume data is shown in Figure \ref{fig:PV_jadeite_aegirine}.
+
+\begin{figure}[ht!]
+  \centering
+  %\includegraphics[width=0.8\textwidth]{figures/}
+  \caption{Pressure-volume data in the binary system Jadeite-Aegirine \citep{NBLBT2006}, with the model proposed in this study.}
+  \label{fig:PV_jadeite_aegirine}
+\end{figure}
 
 \begin{table}[]
 \centering
-\caption{Jadeite-Aegirine mixing parameters to fit the room temperature data of \cite{NBLBT2006}. $K''_0 = -K'_0/K_0$.}
-\label{jd_aeg}
+\caption{Jadeite-Aegirine mixing parameters to fit the room temperature data of \cite{NBLBT2006}. The value for $K'_0$ is fixed to the value given by the heuristic proposed in the text. $K''_0 = -K'_0/K_0$.}
+\label{tab:jd_aeg}
 \begin{tabular}{lllll}
                    & jadeite              & aegirine             & jd50ae50             & ae50jd50             \\
 $V_0$ (cm$^3$/mol) & 60.5640 $\pm$ 0.0001 & 64.6261 $\pm$ 0.0004 & 62.3641 $\pm$ 0.0005 & 62.4522 $\pm$ 0.0005 \\
@@ -167,22 +174,67 @@ $K'_0$             & 4.6                  & 4.4                  & 4.4785       
 \end{tabular}
 \end{table}
 
+Using the derived properties of the solid solution, we can fit the excess volume as a function of pressure (Figure \ref{fig:excess_volume_jadeite_aegirine}). The decay of excess volume as a function of pressure is in excellent agreement with the heuristic proposed in the previous section.
+
+\begin{figure}[ht!]
+  \centering
+  %\includegraphics[width=0.8\textwidth]{figures/}
+  \caption{Excess volume for Jd$_{50}$Aeg$_{50}$ calculated from our model.}
+  \label{fig:excess_volume_jadeite_aegirine}
+\end{figure}
 
 \subsection{Garnet}
 Our second example is the pyrope-grossular join, which is well-known to have significant non-ideality and volumes of mixing. Here we use the excess volume of \cite{DCW2015}, approximating the solid solution as symmetric and using the heuristics described above.
 
+P-wave , S-wave and bulk sound velocities are functions of isentropic bulk and shear moduli and density:
+\begin{eqnarray}
+V_P = \sqrt \frac{K_S + \frac{4}{3} G }{\rho} \\
+V_S = \sqrt \frac{G}{\rho} \\
+V_\Phi = \sqrt \frac{K_S}{\rho}
+\end{eqnarray}
+To illustrate the effect of excess bulk moduli on seismic wave velocities, we plot $V_\Phi$ for a 50:50 molar mix of pyrope and grossular according to three solid solution models (Figure \ref{fig:bulk_sound_garnet}).
 
+\begin{figure}[ht!]
+  \centering
+  %\includegraphics[width=0.8\textwidth]{figures/}
+  \caption{Bulk sound velocities of Py$_{50}$Gr$_{50}$ at room temperature according to the model of \citep{GCT1996}, a fixed excess volume based on room pressure data \citep{DCW2015} and a full subregular model incorporating excess bulk moduli, from the same study.}
+  \label{fig:bulk_sound_garnet}
+\end{figure}
+
+We note that for natural garnet, $(\partial \ln V_S / \partial \ln V_P)_P \sim 1$ \citep{CBS1997}, and therefore $V_p/V_S \sim c$ with varying temperature. With this in mind, $V_P$ and $V_S$ should be constant fractions of the bulk sound velocity $V_\Phi$.
 \subsection{Fe-O melt}
 
-Our final example is that of Fe-FeO melt. This liquid solution is extremely important for understanding partitioning of oxygen into the Earth's core. At pressures $<$25 GPa, the solution exhibits signficant non-ideality, with a large miscibility gap between ionic and metallic Fe-O liquids \citep{Frostetal2010}. As pressure increases, this miscibility gap disappears, indicating a negative excess volume of mixing. \cite{Kom2014} uses an ideal model at high pressure, and obtains a more-or-less reasonable fit to the available experimental data. 
+Our final example is that of Fe-FeO melt. This liquid solution is extremely important for understanding partitioning of oxygen into the Earth's core. At pressures $<$25 GPa, the solution exhibits signficant non-ideality, with a large miscibility gap between ionic and metallic Fe-O liquids \citep{Frostetal2010}. As pressure increases, this miscibility gap disappears, indicating a negative excess volume of mixing (Figure \ref{fig:Fe_O_solvus}). \cite{Kom2014} uses an ideal model at high pressure, and obtains a more-or-less reasonable fit to the available experimental data. 
 
-To model processes of mantle differentiation and core formation, it would be extremely useful to have a single model describing the properties of melts over relevant pressure and temperature ranges. Clearly a high pressure ideal model cannot be reconciled with a low pressure model with large excess volumes of mixing without incorporating excess bulk moduli and thermal expansivities. 
+To model processes of mantle differentiation and core formation, it would be extremely useful to have a single model describing the properties of melts over relevant pressure and temperature ranges. Clearly a high pressure ideal model cannot be reconciled with a low pressure model with large excess volumes of mixing without incorporating excess bulk moduli and thermal expansivities. Here, we use the compositions of coexisting metallic and ionic liquid \citep{} and the pressure, temperature and compositions of eutectic liquid at high pressure \citep{} to constrain the mixing properties of Fe-FeO liquid (Figure \ref{fig:Fe_O_interaction}). The eutectic temperature and composition above 25 GPa are shown in Figure \ref{fig:Fe_O_melting}.
 
-\cite{DKS2013}
+\begin{figure}[ht!]
+  \centering
+  %\includegraphics[width=0.8\textwidth]{figures/}
+  \caption{Fe-O solvus}
+  \label{fig:Fe_O_solvus}
+\end{figure}
+
+\begin{figure}[ht!]
+  \centering
+  %\includegraphics[width=0.8\textwidth]{figures/}
+  \caption{Interaction terms in Fe-FeO melt as a function of pressure.}
+  \label{fig:Fe_O_interaction}
+\end{figure}
+
+\begin{figure}[ht!]
+  \centering
+  %\includegraphics[width=0.8\textwidth]{figures/}
+  \caption{Melting temperature in the Fe-O system as a function of pressure. Inset: eutectic composition in the Fe-O system.}
+  \label{fig:Fe_O_melting}
+\end{figure}
+
+
+
 
 \section{Conclusions}
 
-
+\cite{DKS2013}
 
 \clearpage
 \section*{References}
