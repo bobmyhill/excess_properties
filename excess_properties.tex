@@ -142,11 +142,11 @@ If excess volumes are zero, the bulk modulus is given by Equation \ref{K_T}, wit
 We suggest that, in the absence of other data it should be assumed that $\left( \frac{\partial \mathcal{V}}{\partial P} \right)_T^{xs} \rightarrow 0$ as $P \rightarrow \infty$. Bulk moduli for intermediates can then be constrained. 
 
 \begin{equation}
-  K_{T} \sim 0.5(K_{Ti} + K_{Tj}) + c \left(\frac{K_{Ti}\mathcal{V}_{j} + K_{Tj}\mathcal{V}_{j}}{\mathcal{V}_{i} + \mathcal{V}_{j}} - 0.5(K_{Ti} + K_{Tj})\right)
+  K_{T} \sim 0.5(K_{Ti} + K_{Tj}) + \xi \left(\frac{K_{Ti}\mathcal{V}_{j} + K_{Tj}\mathcal{V}_{j}}{\mathcal{V}_{i} + \mathcal{V}_{j}} - 0.5(K_{Ti} + K_{Tj})\right)
   \label{K_T_heuristic}
 \end{equation}
 
-The factor $c$ before the second term on the RHS of Equation \ref{K_T_heuristic} modifies the rule of thumb proposed by \cite{AA1970} to estimate the compressibility of endmembers based on their molar volumes. Typically, values of $c$ from 4 to 12 satisfy our proposed heuristic.
+The factor $\xi$ before the second term on the RHS of Equation \ref{K_T_heuristic} modifies the rule of thumb proposed by \cite{AA1970} to estimate the compressibility of endmembers based on their molar volumes. Typically, a value of $\sim$6 provides a useful first estimate of $\xi$. 
 
 \section{Examples}
 \subsection{Pyroxene}
@@ -175,14 +175,16 @@ Using the derived properties of the solid solution, we can fit the excess volume
 
 \begin{figure}[ht!]
   \centering
-  \includegraphics[width=0.8\textwidth]{figures/jadeite50aegirine50_Vex}
-  \caption{Excess volume for Jd$_{50}$Aeg$_{50}$ calculated from our model.}
+  \includegraphics[width=0.8\textwidth]{figures/jadeite_aegirine_Vex}
+  \caption{Excess volume for Jd-Aeg pyroxenes calculated from our model.}
   \label{fig:excess_volume_jadeite_aegirine}
 \end{figure}
 
 \clearpage
 \subsection{Garnet}
-Our second example is the pyrope-grossular join, which is well-known to have significant non-ideality and volumes of mixing. Here we use the excess volume of \cite{DCW2015}, approximating the solid solution as symmetric and using the heuristics described above. The data from \cite{DCW2015} shows a clear 'w'-shaped pattern in bulk modulus, which the authors argue is the result of ordering around Py$_{50}$Gr$_{50}$. Since this pattern means that intermediate compositions will yield the smallest absolute excess bulk modulus, we fit the data from the Py$_{40}$Gr$_{60}$ sample and the Py$_{20}$Gr$_{80}$/Py$_{80}$Gr$_{20}$ samples separately (Table \ref{tab:py_gr}). The fit to the room temperature data is shown in Figure \ref{fig:PV_pyrope_grossular}.
+Our second example is the pyrope-grossular join, which is well-known to have significant non-ideality and volumes of mixing \citep{NCK1977, BG1997, GCT1996}. Recently, it has been suggested that the excess volumes of mixing are $\sim$1 cm$^3$/mol, 2--3 times larger than previously suggested, and associated with very large negative excess bulk moduli \citep{DCW2015}. If this were true, it would have significant implications for phase relations and seismic velocities in the mantle.
+
+Here we compare the recent results with those predicted from a combination of the previous results and our heuristics. the excess volume of \cite{DCW2015}, approximating the solid solution as symmetric and using the heuristics described above. The data from \cite{DCW2015} shows a clear 'w'-shaped pattern in bulk modulus, which the authors argue is the result of ordering around Py$_{50}$Gr$_{50}$. Since this pattern means that intermediate compositions will yield the smallest absolute excess bulk modulus, we fit the data from the Py$_{40}$Gr$_{60}$ sample and the Py$_{20}$Gr$_{80}$/Py$_{80}$Gr$_{20}$ samples separately (Table \ref{tab:py_gr}). The fit to the room temperature data is shown in Figure \ref{fig:PV_pyrope_grossular}.
 
 \begin{table}[ht!]
 \centering
@@ -273,11 +275,12 @@ At $>$25 GPa, the pressure, temperature and compositions of eutectic liquid at h
 \clearpage
 \section{Discussion}
 
-The use of intermediate compounds to describe excess properties is an extremely simple but powerful concept that lends a great deal of flexibility to models without necessarily increasing the number of parameters which need to be fit to the available experimental data. Such models are not required where excess volumes are small, but in the cases where they are large, they are vital to reproduce seismic velocities and phase relations far from the reference \emph{P-T} conditions.
+The use of intermediate compounds to describe excess properties is an extremely simple but powerful concept that lends a great deal of flexibility to models without necessarily increasing the number of parameters which need to be fit to the available experimental data. We note that the equations derived here are all quite general, and therefore easily applicable to a wide range of different equations of state.
 
-It is envisaged that such models will be very useful in modelling silicate and metallic melts, where excess volumes are large at low pressure, and rapidly decrease at higher pressure. Even in the MgO-SiO$_2$ system, excess entropies and volumes are strongly dependent on temperature and pressure \citep{DKS2013}.
+The heuristics suggested here place constraints on seismic properties which are significantly more strict than typical uncertainties on bulk moduli derived from ultrasonic interferometry, Brillouin scattering or static compression. For example, along the pyrope-majorite join, excess volumes are small (0.1 cm$^3$/mol) \citep{HSSR1997}. With the assumption that excess volumes decrease to zero with increasing pressure, the excess bulk modulus is constrained to be $\sim$-0.6 GPa. In comparison, the range in bulk modulus estimates anywhere along the pyrope-majorite join is about 10 GPa \citep[see, for example][]{HDWB2010}. So far, high pressure elasticity studies have mostly been focussed on binary joins with small excess volumes at ambient pressure \citep{FXMLX2015, HC2014}. That they should small excess bulk moduli is in good agreement with the heuristics proposed here, but a far more rigorous test would be to investigate systems with large volume excesses.
 
-Finally, we note that the equations derived here are all quite general, and therefore easily applicable to a wide range of different equations of state.
+It is envisaged that the model formulation proposed in this study will be very useful in modelling silicate and metallic melts, where excess volumes are large at low pressure. Even in the MgO-SiO$_2$ system, excess entropies and volumes are strongly dependent on temperature and pressure \citep{DKS2013}.
+
 
 \section{Acknowledgments}
 RM is funded by the Advanced ERC Grant awarded to the ``ACCRETE'' project.
