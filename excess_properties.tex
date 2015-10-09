@@ -4,7 +4,7 @@
 \usepackage{pdflscape}
 \modulolinenumbers[5]
 
-\journal{Geochemica and Cosmochemica Acta}
+\journal{Earth and Planetary Science Letters}
 
 %%%%%%%%%%%%%%%%%%%%%%%
 %% Elsevier bibliography styles
@@ -42,7 +42,7 @@
 
 \begin{frontmatter}
 
-\title{Modelling excess properties of mineral and melt solutions over large P-T ranges: implications for phase relations and seismic velocities in the mantle}
+\title{Modelling excess properties of minerals and melts: implications for phase relations and seismic velocities in the Earth and other planetary bodies}
 %\tnotetext[mytitlenote]{Fully documented templates are available in the elsarticle package on \href{http://www.ctan.org/tex-archive/macros/latex/contrib/elsarticle}{CTAN}.}
 
 %% Group authors per affiliation:
@@ -52,9 +52,11 @@
 \ead{myhill.bob@gmail.com}
 
 \begin{abstract}
-  Thermodynamic models of solid and liquid solutions in the Earth Sciences are increasingly used to calculate phase relations and seismic properties over large pressure and temperature ranges. Calculations often span over 1000 K and 5 GPa in studies of exhumation processes and metamorphism in subduction zones. Research into mantle phase relations and differentiation of the early Earth frequently involves calculations over 3000 K and 100 GPa. Despite spanning such huge ranges, a common approximation is that excess thermodynamic derivatives within solid solutions (entropy and volume) are constant with respect to pressure and temperature. This is generally not true; absolute excess volumes tend to decrease with increasing pressure. As a result, the constant volume approximation may have a significant effect on both phase relations and seismic velocities calculated from solid solution models.
+  Thermodynamic models of solid and liquid solutions in the Earth Sciences are increasingly used to calculate phase relations and seismic properties over large pressure and temperature ranges. Research into mantle phase relations, subduction and differentiation of the early Earth frequently involves calculations spanning 1000s of K and 10s of GPa. Despite spanning such huge ranges, a common approximation is that excess thermodynamic derivatives within solid solutions (entropy and volume) are constant with respect to pressure and temperature. This is generally not true. In particular, absolute excess volumes tend to decrease with increasing pressure. As a result, the constant volume approximation may have a significant effect on both phase relations and seismic velocities calculated from solution models.
 
-  In this paper, we present a solution to this problem by extending the subregular Margules mixing model using intermediate compounds to define the thermodynamic properties of solid solutions. Mathematical derivations are provided for excess properties ($H^{ex}$, $S^{ex}$, $V^{ex}$) and their pressure and temperature derivatives ($K_T^{ex}$, $\alpha^{ex}$, $Cp^{ex}$ etc.). We provide examples of pyroxene, garnet and melt solutions, showing that inclusion of a variable excess volume is vital to simulate observed phase relations and seismic velocities. Heuristics are suggested for intermediate compounds where individual thermodynamic properties are poorly constrained.
+  This paper describes an extension to the subregular Margules mixing model which employs intermediate compounds to define the excess thermodynamic properties of solid solutions. Mathematical derivations are provided for excess properties ($H^{ex}$, $S^{ex}$, $V^{ex}$) and their pressure and temperature derivatives ($K_T^{ex}$, $\alpha^{ex}$, $Cp^{ex}$ etc.). Heuristics are suggested for intermediate compounds where individual thermodynamic properties are poorly constrained.
+
+Examples of pyroxene, garnet and melt solutions show that inclusion of a variable excess volume is vital to simulate observed phase relations and seismic velocities. Large deviations from predictions made by classical solution models are observed for garnets under transition zone pressures and metallic melts with light elements. The new solution model scheme will allow for a huge wealth of experimental data to be incorporated into models of solid solutions, and is expected to be important for geochemical and geophysical models of the Earth, Mars and the Moon.
 
 
 \end{abstract}
@@ -69,28 +71,28 @@ high pressure \sep excess properties
 
 \section{Introduction}
 
-Solution models are a vital part of estimating phase relations in the Earth. Typically, some functional form (often quadratic, cubic) is used to describe excess non-configurational energies between endmembers. Where necessary, the parameters describing the properties of the solid solution are allowed to vary as a function of pressure and temperature. 
+Solution models are a vital part of estimating phase relations at high pressure and temperatures. Typically, experimental estimates of excess enthalpy $\mathcal{H}$, entropy $\mathcal{S}$ and volume $\mathcal{V}$ across a binary solution are fit to some functional form (often quadratic, cubic). Extensions to ternary and larger systems are then built from these binaries. Typically, these models result in a series of interaction parameters of the form
 \begin{equation}
-  W_{ij} = W_{ij}^H + W_{ij}^VP + W_{ij}^ST
+  W_{ij} = W_{ij}^{\mathcal{H}} + W_{ij}^{\mathcal{V}}P + W_{ij}^{\mathcal{S}}T
   \label{eqn:trad_form}
 \end{equation}
 
-Models described in this way have been extremely successful in describing the properties of solid solutions up to pressures of a few GPa. Increasingly, such models are being used over larger and larger pressure ranges. For example, garnet models are now being used to estimate phase relations in the mantle transition zone, and models of metallic alloys and melts are being used to study the composition and evolution of the Earth's core. Solution models are also increasingly being used to estimate seismic velocities in the mantle and core. These two developments present a problem for the traditional approach to estimating mixing properties, because they are both strongly dependent on the change in excess volume with pressure, a variable which is identical to zero in Equation \ref{eqn:trad_form}.
+Models described in this way have been extremely successful in describing the thermodynamic properties of solid solutions at crustal pressures and temperatures. Under such conditions, the linear pressure and temperature approximation in Equation \ref{eqn:trad_form} is perfectly reasonable, as deviations from constant volume and entropy excesses are small. However, thermodynamic models are now being extended over much larger pressure and temperature ranges \citep{SLB2011, HP2011, HHPH2013, DKS2013}. It is unlikely that excess properties will remain constant over these ranges. For example, imagine two crystal lattices ($A_xO_y$ and $B_xO_y$) comprising cations with different ionic radii and field strengths. The properties of the cations (and anion) result in different unit cell volumes and compressibilities; typically the lattice with the larger cationic radius will have a large volume and smaller bulk modulus \citep{AA1970}. Now imagine a third lattice with intermediate composition ($[A_{1-z}B_z]_xO_y$). This lattice will typically exhibit distortions which result in a positive or negative excess volume, as a direct result of changing the average cation-anion bond length relative to the sum of the endmembers (Vegard's Law). It is reasonable to suggest that longer bonds will be more compressible, and that therefore a positive excess volume will result in a negative excess bulk modulus. The reverse is also true; shorter bonds are likely to be less compressible. Of course, compression in complex minerals is unlikely to be well-described by a simple isotropic change in bond length. Nevertheless, other compression mechanisms such as polyhedral rotation are likely to be affected in a similar way; in general, a smaller volume will reduce the flexibility of the structure.
 
-To explain in a simple way why excess volumes are likely to change with pressure, imagine two crystal lattices ($A_xO_y$ and $B_xO_y$) comprising cations with different ionic radii and field strengths. The properties of the cations (and anion) result in different unit cell volumes and compressibilities; typically the lattice with the larger cationic radius will have a large volume and smaller bulk modulus \citep{AA1970}. Now imagine a third lattice with intermediate composition ($[A_{1-z}B_z]_xO_y$). This lattice will typically exhibit distortions which result in a positive or negative excess volume, as a direct result of changing the average cation-anion bond length relative to the sum of the endmembers (Vegard's Law). It is reasonable to suggest that longer bonds will be more compressible, and that therefore a positive excess bulk modulus will result in a negative excess bulk modulus. The reverse is also true; shorter bonds are likely to be less compressible. Of course, compression in complex minerals is unlikely to be well-described by a simple isotropic change in bond length. Nevertheless, other compression mechanisms such as polyhedral rotation are likely to be affected in a similar way; in general, a smaller volume will reduce the flexibility of the structure.
 
-There is currently no formulation to model solid solutions in the case that constant excess volumes (or indeed excess entropies) are an inappropriate approximation. We introduce here a simple adaptation of the subregular Margules mixing model, using intermediate compounds to describe the excess properties of the solid solution as a function of pressure and temperature. The added flexibility comes with a large increase in the number of free parameters, so we also provide useful heuristics for the cases where individual parameters are unknown.
+Thermoelastic models are also increasingly being used to interpret seismic data in terms of the temperature and composition of the deep Earth. Studies have focussed on Earth's mantle \citep[e.g.][]{DGDSBR2012, MCDRT2012, DCT2012} and core \citep[e.g.][]{SGGFMM2000,SFGMM2004}, and with the successful deployment of seismometers may soon extend to Mars \citep{GLZR2014}. Again, the bulk modulus imposed by the constant excess volume approximation may be a significant and unnecessary contributor to error in these studies, especially for metallic liquids, where excess volumes at low pressures are often very large. 
 
-The new form of the model is illustrated with the use of three implementations for pyroxene, garnet and Fe-FeO melt. We show that for these cases a constant excess volume based on room pressure data is a bad approximation beyond a few GPa pressure, and errors in seismic velocities and phase relations result from not incorporating reasonable decays in excess volume. This new formulation should enable a large number of studies on elastic properties of solid solutions to be incorporated into thermodynamic models. The study also highlights the need for high quality equation of state data for intermediate compositions within solid solutions; data which is currently lacking, even in systems with sizeable excess volumes.
+The current study addresses the problems outlined above by introducing a simple adaptation of the subregular Margules mixing model, using intermediate compounds to describe the excess properties of the solid solution as a function of pressure and temperature. The added flexibility comes with a large increase in the number of free parameters, so useful heuristics are also provided for the cases where individual parameters are unknown. This new formulation should enable a large number of studies on elastic properties of solid solutions to be incorporated into thermodynamic models. This study also highlights the need for high quality equation of state and seismic velocity data for intermediate compositions within solid solutions.
 
-\section{The Extended Subregular Margules (ESM) model}
+\section{Theory} 
+\subsection{The Extended Subregular Margules (ESM) model}
 The subregular Margules mixing model within a binary system $A$-$B$ approximates excess Gibbs free energies at any given pressure and temperature as a cubic function of composition \citep{HW1989}:
 \begin{equation}
   \mathcal{G}^{xs} = X_B (1-X_B) \left(W_{AB} X_B + W_{BA} (1-X_B) \right)
   \label{eqn:subreg}
 \end{equation}
 
-In the special case that $W_{AB} = W_{BA}$, the function is a quadratic. We can define the Gibbs interaction parameter in terms of the Gibbs free energy of a 50:50 intermediate compound ($AB$) and the endmembers $A$ and $B$:
+In the special case that $W_{AB} = W_{BA}$, the function is a quadratic. I can define the Gibbs interaction parameter in terms of the Gibbs free energy of a 50:50 intermediate compound ($AB$) and the endmembers $A$ and $B$:
 
 \begin{equation}
   W^{\mathcal{G}}_{AB} = 4(\mathcal{G}_{AB} + T\mathcal{S}^{\textrm{conf}}_{AB}) - 2(\mathcal{G}_A + \mathcal{G}_B)
@@ -150,7 +152,7 @@ It is often the case that endmembers are particularly well studied, while the pr
   K'_{T} = -\frac{\partial}{\partial P} \left (\mathcal{V}\left( \frac{\partial P}{\partial \mathcal{V}} \right)_T \right) \sim \mathcal{V} \left(\sum_i \frac{X_i \mathcal{V}_i}{K'_{Ti} + 1} \right)^{-1} - 1
 \end{eqnarray}
 
-If excess volumes are zero, it is likely that they will remain zero as temperatures and pressures increase. In this case, the bulk modulus is given by Equation \ref{K_T}, with the differential term equal to zero. In contrast, non-zero excess volumes are unlikely to remain constant with pressure and temperature. We suggest that, in the absence of other data a useful heuristic is $\left( \frac{\partial \mathcal{V}}{\partial P} \right)_T^{xs} \rightarrow 0$ as $P \rightarrow \infty$.
+If excess volumes are zero, it is likely that they will remain zero as temperatures and pressures increase. In this case, the bulk modulus is given by Equation \ref{K_T}, with the differential term equal to zero. In contrast, non-zero excess volumes are unlikely to remain constant with pressure and temperature. I suggest that, in the absence of other data a useful heuristic is $\left( \frac{\partial \mathcal{V}}{\partial P} \right)_T^{xs} \rightarrow 0$ as $P \rightarrow \infty$.
 
 A useful way to view the change in bulk modulus across a solid solution is to compare the excess bulk modulus to that implied by the $K_TV =$ \emph{constant} rule of thumb proposed by \cite{AA1970} to estimate the compressibility of endmembers based on their molar volumes. The heuristic we propose in this study predicts a larger excess term than that suggested by the rule of thumb, which we describe using a factor $\xi$:
 
@@ -164,7 +166,7 @@ Now that we have described the new model and heuristics related to the construct
 
 \section{Examples}
 \subsection{Pyroxene}
-Our first example is that of jadeite-aegirine pyroxene, an almost ideal solid solution (from a volumetric perspective). We use this model to illustrate that even when excess volumes are extremely small, excess bulk moduli are resolvable. The experimental data is that of \cite{NBLBT2006}, and the equation of state used is the Modified Tait \citep{HP2011}. The fit to the volume data is shown in Figure \ref{fig:PV_jadeite_aegirine}.
+Our first example is that of jadeite-aegirine pyroxene, an almost ideal solid solution (from a volumetric perspective). I use this model to illustrate that even when excess volumes are extremely small, excess bulk moduli are resolvable. The experimental data is that of \cite{NBLBT2006}, and the equation of state used is the Modified Tait \citep{HP2011}. The fit to the volume data is shown in Figure \ref{fig:PV_jadeite_aegirine}.
 
 \begin{figure}[ht!]
   \centering
@@ -231,6 +233,10 @@ At present, it is not easy to state with certainty whether natural garnets have 
 
 \clearpage
 \subsection{Fe-FeO melt}
+XXXX introduction to core modelling
+
+
+
 Our final example is that of Fe-FeO melt. As oxygen may be one of the more abundant light elements in the core, understanding the thermodynamics of this liquid solution is an important part of understanding mantle-core differentiation and interaction over billions of years. At pressures $<$25 GPa, the Fe-FeO solution exhibits signficant non-ideality, with a large miscibility gap between ionic and metallic Fe-O liquids \citep{KS1995,TOT2007,Frostetal2010}. As pressure increases, this miscibility gap disappears, indicating a negative excess volume of mixing (Figure \ref{fig:Fe_O_solvus}). To explain the increase in eutectic temperature with pressure, \cite{Kom2014} suggest that mixing becomes essentially ideal at $>$100 GPa. 
 
 \begin{figure}[ht!]
@@ -275,9 +281,10 @@ At $>$25 GPa, the pressure, temperature and compositions of eutectic liquid at h
 \end{table}
 
 \clearpage
-\section{Discussion}
+\section{Conclusions}
+XXXX make more exciting!
 
-The use of intermediate compounds to describe excess properties is an extremely simple but powerful concept that lends a great deal of flexibility to models without necessarily increasing the number of parameters which need to be fit to the available experimental data. We note that the equations derived here are all quite general, and therefore easily applicable to a wide range of different equations of state.
+The use of intermediate compounds to describe excess properties is an extremely simple but powerful concept that lends a great deal of flexibility to models without necessarily increasing the number of parameters which need to be fit to the available experimental data. I note that the equations derived here are all quite general, and therefore easily applicable to a wide range of different equations of state.
 
 The heuristics suggested here place constraints on seismic properties which are significantly more strict than typical uncertainties on bulk moduli derived from ultrasonic interferometry, Brillouin scattering or static compression. For example, along the pyrope-majorite join, excess volumes are small (0.1 cm$^3$/mol) \citep{HSSR1997}. With the assumption that excess volumes decrease to zero with increasing pressure, the excess bulk modulus is constrained to be $\sim$-0.6 GPa. In comparison, the range in bulk modulus estimates anywhere along the pyrope-majorite join is about 10 GPa \citep[see, for example][]{HDLWB2010}. So far, high pressure elasticity studies have mostly been focussed on binary joins with small excess volumes at ambient pressure \citep{FXMLX2015, HC2014}. That they should exhibit small excess bulk moduli is in excellent agreement with the heuristics proposed here, but a far more rigorous test would be to investigate systems with large volume excesses.
 
@@ -285,7 +292,7 @@ It is envisaged that the model formulation proposed in this study will be very u
 
 
 \section{Acknowledgments}
-RM is funded by the Advanced ERC Grant awarded to the ``ACCRETE'' project.
+RM is funded by the Advanced ERC Grant awarded to the ``ACCRETE'' project (Contract number 290568). He would like to thank Dave Rubie, Dan Frost and Christopher Beyer for useful discussions.
 \clearpage
 \section*{References}
 
