@@ -1,85 +1,56 @@
-%%%%%%%%%%%%%%%%%%%%%%% file template.tex %%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% This is a general template file for the LaTeX package SVJour3
-% for Springer journals.          Springer Heidelberg 2010/09/16
-%
-% Copy it to a new file with a new name and use it as the basis
-% for your article. Delete % signs as needed.
-%
-% This template includes a few options for different layouts and
-% content for various journals. Please consult a previous issue of
-% your journal as needed.
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% First comes an example EPS file -- just ignore it and
-% proceed on the \documentclass line
-% your LaTeX will extract the file if required
-\begin{filecontents*}{example.eps}
-%!PS-Adobe-3.0 EPSF-3.0
-%%BoundingBox: 19 19 221 221
-%%CreationDate: Mon Sep 29 1997
-%%Creator: programmed by hand (JK)
-%%EndComments
-gsave
-newpath
-  20 20 moveto
-  20 220 lineto
-  220 220 lineto
-  220 20 lineto
-closepath
-2 setlinewidth
-gsave
-  .4 setgray fill
-grestore
-stroke
-grestore
-\end{filecontents*}
-%
-\RequirePackage{fix-cm}
-%
-%\documentclass{svjour3}                     % onecolumn (standard format)
-%\documentclass[smallcondensed]{svjour3}     % onecolumn (ditto)
-\documentclass[smallextended]{svjour3}       % onecolumn (second format)
-%\documentclass[twocolumn]{svjour3}          % twocolumn
-%
-\smartqed  % flush right qed marks, e.g. at end of proof
-%
-\usepackage{graphicx}
-%
-% \usepackage{mathptmx}      % use Times fonts if available on your TeX system
-%
-% insert here the call for the packages your document requires
-%\usepackage{latexsym}
-\usepackage{natbib}
-% etc.
-%
-% please place your own definitions here and don't use \def but
-% \newcommand{}{}
-%
-% Insert the name of "your journal" with
-% \journalname{myjournal}
-%
+\documentclass[review]{elsarticle}
+
+%\usepackage{lineno}
+\usepackage{hyperref}
+\usepackage{pdflscape}
+%\modulolinenumbers[5]
+
+\journal{Contributions to Mineralogy and Petrology}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%% Elsevier bibliography styles
+%%%%%%%%%%%%%%%%%%%%%%%
+%% To change the style, put a % in front of the second line of the current style and
+%% remove the % from the second line of the style you would like to use.
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Numbered
+%\bibliographystyle{model1-num-names}
+
+%% Numbered without titles
+%\bibliographystyle{model1a-num-names}
+
+%% Harvard
+\bibliographystyle{model2-names.bst}\biboptions{authoryear}
+
+%% Vancouver numbered
+%\usepackage{numcompress}\bibliographystyle{model3-num-names}
+
+%% Vancouver name/year
+%\usepackage{numcompress}\bibliographystyle{model4-names}\biboptions{authoryear}
+
+%% APA style
+%\bibliographystyle{model5-names}\biboptions{authoryear}
+
+%% AMA style
+%\usepackage{numcompress}\bibliographystyle{model6-num-names}
+
+%% `Elsevier LaTeX' style
+%\bibliographystyle{elsarticle-num}
+%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{document}
 
+\begin{frontmatter}
+
 \title{Excess thermodynamic and elastic properties of mineral and melt solutions: modelling and implications for phase relations and seismic velocities}
-%\subtitle{Do you have a subtitle?\\ If so, write it here}
+%\tnotetext[mytitlenote]{Fully documented templates are available in the elsarticle package on \href{http://www.ctan.org/tex-archive/macros/latex/contrib/elsarticle}{CTAN}.}
 
-\titlerunning{Excess properties of mineral and melt solutions}        % if too long for running head
-
+%% Group authors per affiliation:
 \author{R. Myhill}
-
-%\authorrunning{Short form of author list} % if too long for running head
-
-\institute{R. Myhill \at
-              Bayerisches Geoinstitut, Universit\"{a}t Bayreuth, Universit\"{a}tsstrasse 30, 95447 Bayreuth, Germany\\
-              \email{myhill.bob@gmail.com}}
-
-\date{Received: date / Accepted: date}
-% The correct dates will be entered by the editor
-
-
-\maketitle
+\address{Bayerisches Geoinstitut, Universit\"{a}t Bayreuth, Universit\"{a}tsstrasse 30, 95447 Bayreuth, Germany}
+\cortext[mycorrespondingauthor]{Corresponding author: R. Myhill}
+\ead{myhill.bob@gmail.com}
 
 \begin{abstract}
 Thermodynamic models of solid and liquid solutions are increasingly used to calculate phase relations and seismic properties over large pressure and temperature ranges. Research into mantle phase relations, subduction and differentiation of the early Earth frequently involves calculations spanning thousands of Kelvin and tens of gigapascals. Over such huge ranges, excess entropy and volume are unlikely to remain constant with respect to pressure and temperature. For example, absolute excess volumes usually decrease with increasing pressure. The implication is that to provide a good estimate of phase relations and seismic velocities, solution models must be flexible enough to accommodate changes in elastic and thermodynamic derivatives, such as the bulk modulus.
@@ -87,11 +58,15 @@ Thermodynamic models of solid and liquid solutions are increasingly used to calc
 This paper describes an extension to the subregular Margules mixing model which employs intermediate compounds to define the excess thermodynamic properties of solid solutions. Mathematical derivations are provided for excess thermodynamic properties (enthalpy, entropy, volume) and their pressure and temperature derivatives (bulk modulus, thermal expansion etc.). Heuristics are suggested for intermediate compounds where individual thermodynamic properties are poorly constrained.
 
 Examples of pyroxene, garnet and melt solutions are presented, which show that accurate modelling of phase relations and seismic velocities requires absolute excess volumes to decrease as a function of pressure. The formulation proposed here allows for a wealth of experimental data to be incorporated into solution models, and is expected to be important for geochemical and geophysical models of the Earth and other planetary bodies.
-
-\keywords{high pressure \and excess properties \and solution model \and solid \and melt \and elasticity}
 \end{abstract}
 
+\begin{keyword}
+high pressure \sep excess properties \sep solution model \sep solid \sep melt \sep elasticity
+\end{keyword}
 
+\end{frontmatter}
+
+\linenumbers
 
 \section{Introduction}
 
@@ -123,7 +98,7 @@ In the special case that $W_{AB} = W_{BA}$, the function is a quadratic. I can d
 
 \begin{figure}[ht!]
   \centering
-  %\includegraphics[width=0.8\textwidth]{figures/schematic}
+  \includegraphics[width=0.8\textwidth]{figures/schematic}
   \caption{Schematic illustration of excess energies within a binary subregular solution model.}
   \label{fig:schematic}
 \end{figure}
@@ -192,7 +167,7 @@ Our first example is that of jadeite-aegirine pyroxene, an almost ideal solid so
 
 \begin{figure}[ht!]
   \centering
-  %\includegraphics[width=0.8\textwidth]{figures/jadeite_aegirine_P_V}
+  \includegraphics[width=0.8\textwidth]{figures/jadeite_aegirine_P_V}
   \caption{Pressure-volume data in the binary system jadeite-aegirine \citep{NBLBT2006}. Solid lines correspond to the volumes predicted by the model proposed in this study.}
   \label{fig:PV_jadeite_aegirine}
 \end{figure}
@@ -213,7 +188,7 @@ Using the derived properties of the solid solution, we can fit the excess volume
 
 \begin{figure}[ht!]
   \centering
-  %\includegraphics[width=0.8\textwidth]{figures/jadeite_aegirine_Vex}
+  \includegraphics[width=0.8\textwidth]{figures/jadeite_aegirine_Vex}
   \caption{Excess volume for jadeite-aegirine pyroxenes \citep{NBLBT2006}. Solid lines correspond to the modelled excess volumes.}
   \label{fig:excess_volume_jadeite_aegirine}
 \end{figure}
@@ -226,7 +201,7 @@ Here, we create four models to describe the room temperature equations of state 
 
 \begin{figure}[ht!]
   \centering
-  %\includegraphics[width=0.8\textwidth]{figures/pyrope_grossular_K_0}
+  \includegraphics[width=0.8\textwidth]{figures/pyrope_grossular_K_0}
   \caption{Bulk moduli in the pyrope-grossular binary. Data points are those reported by \cite{DCW2015}. The four models correspond to those discussed in the main text.}
   \label{fig:K_T_pyrope_grossular}
 \end{figure}
@@ -245,7 +220,7 @@ Thermodynamic solution models say nothing about shear moduli, so we restrict our
 
 \begin{figure}[ht!]
   \centering
-  %\includegraphics[width=0.8\textwidth]{figures/pyrope_grossular_bulk_sound_velocities}
+  \includegraphics[width=0.8\textwidth]{figures/pyrope_grossular_bulk_sound_velocities}
   \caption{Bulk sound velocities of py$_{50}$gr$_{50}$ at room temperature according to the models described in the text and in Figure \ref{fig:K_T_pyrope_grossular}.}
   \label{fig:bulk_sound_garnet}
 \end{figure}
@@ -261,7 +236,7 @@ Oxygen is a good example of a light element which exhibits a large degree of non
 
 \begin{figure}[ht!]
   \centering
-  %\includegraphics[width=0.8\textwidth]{figures/Fe_FeO_solvus}
+  \includegraphics[width=0.8\textwidth]{figures/Fe_FeO_solvus}
   \caption{The Fe-FeO solvus as a function of pressure and temperature. Data points are taken from the studies of \cite{TOT2007} and \cite{Frostetal2010}. The model corresponds to the values proposed in Table \ref{tab:Fe_FeO}.}
   \label{fig:Fe_O_solvus}
 \end{figure}
@@ -270,7 +245,7 @@ To constrain the properties of the Fe-FeO solid solution, the chemical potential
 
 \begin{figure}[ht!]
   \centering
-  %\includegraphics[width=0.8\textwidth]{figures/Fe_FeO_interaction_terms}
+  \includegraphics[width=0.8\textwidth]{figures/Fe_FeO_interaction_terms}
   \caption{Interaction terms in Fe-FeO melt as a function of pressure. Experimental data comes from solvus constraints at $<$25 GPa \citep{TOT2007,Frostetal2010}, and the composition and temperature of the eutectic at higher pressures \citep{SHCPW2008}.}
   \label{fig:Fe_O_interaction}
 \end{figure}
@@ -279,7 +254,7 @@ The uncertainties on composition and temperature of the eutectic are rather larg
 
 \begin{figure}[ht!]
   \centering
-  %\includegraphics[width=0.8\textwidth]{figures/Fe_FeO_T_X_eutectic}
+  \includegraphics[width=0.8\textwidth]{figures/Fe_FeO_T_X_eutectic}
   \caption{Melting temperature in the Fe-O system as a function of pressure. Inset: eutectic composition in the Fe-O system. Data points are from \cite{SHCPW2008}. The model of \cite{Frostetal2010} employs constant volume and entropy terms derives from data obtained at $<$25 GPa, and deviates significantly from experimental constraints at pressures corresponding to the Earth's core.}
   \label{fig:Fe_O_melting}
 \end{figure}
@@ -315,16 +290,14 @@ The heuristics suggested in this study agree with the available data on the thre
 % Other planets
 In the case of ionic and metallic melts, excess volumes can be extremely large at low pressure. The large excess elastic moduli accompanying these excess volumes will have a large effect on seismic velocities, especially in the cores of relatively small bodies such as Mars or the Moon. As pressures increase, excess volumes are much reduced, which has a similarly profound effect on thermodynamic properties \citep{Frostetal2010, DKS2013}. Accurate characterisation of excess properties of melt solutions, and indeed of solutions in general, will become increasingly important for our interpretation of seismic anomalies, modelling of phase relations, and our understanding of planetary evolution. 
 
-\begin{acknowledgements}
-The author is funded by the Advanced ERC Grant awarded to the ``ACCRETE'' project (Contract number 290568). He would like to thank Dave Rubie, Dan Frost and Christopher Beyer for useful discussions.
+
+\section{Acknowledgments}
+RM is funded by the Advanced ERC Grant awarded to the ``ACCRETE'' project (Contract number 290568). He would like to thank Dave Rubie, Dan Frost and Christopher Beyer for useful discussions.
 
 Figures were created using the Generic Mapping Tools \citep{GMT}.
-\end{acknowledgements}
+\clearpage
+\section*{References}
 
-\bibliographystyle{spbasic}
 \bibliography{references_xs}
 
-
 \end{document}
-
-\grid

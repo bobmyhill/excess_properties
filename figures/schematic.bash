@@ -31,9 +31,6 @@ echo "0.52 3000 G@-AB@-@+xs@+ = W@-AB@-/4" | pstext -J -R -O -K -F+jLM+fblue >> 
 echo "0.32 5000 G@+xs@+" | pstext -J -R -O -F+jLM >> ${base}.ps
 
 ps2epsi ${base}.ps
-epstopdf ${base}.epsi
-
-rm ${base}.ps ${base}.epsi
-
-evince ${base}.pdf &
+rm ${base}.ps
+mv ${base}.epsi ${base}.eps
 
