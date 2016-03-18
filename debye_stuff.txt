@@ -1,0 +1,33 @@
+
+Vibrational contributions to heat capacity and entropy are also likely to be affected by non-ideal interactions \citep[e.g.][]{WC2002}. To understand this, consider the Debye model of heat capacity \citep{Debye1912}, which successfully predicts the low temperature heat capacities of many minerals. This model treats lattice vibrations as phonons in a box, with the minimum phonon wavelength controlled by the atomic spacing \citep{AM1976, Grimvall1999}. The average energy of an oscillator is the product of the average phonon occupation for each oscillator $\left<N \right>$ and the energy associated with each phonon $\hbar \omega$:
+
+\begin{equation}
+\left<E \right> = \hbar \omega \left<N \right> = \frac{\hbar \omega}{\exp{\frac{\hbar \omega}{k_B T}} - 1}
+\end{equation} 
+\noindent where $\hbar$ and $k_B$ are the reduced Planck and Boltzmann constants. 
+
+
+The total thermal energy is then the sum over $m$ modes (one longitudinal, two transverse) of the integral of the average energy associated with an oscillator at frequency $\omega$ multiplied by the density of states at that frequency:
+\begin{eqnarray}
+E = \sum_m \int_0^{\infty} \left<E \right> D_m(\omega)\, d\omega, \\
+D(\omega) = \left\{ \begin{aligned}
+    &\frac{V \omega^2}{2 \pi^2 C_D^3}, && \text{if}\ \omega \leq \omega_D = \sqrt[3]{6 \pi^2 C_D^3 N/V} \\
+    &0, && \text{otherwise}
+  \end{aligned}  \right. ,\\
+{3 \over C_D^3 } \stackrel{\mathrm{def}}{=}\ \left< \sum_{\lambda=1}^{3} {1 \over C_{\lambda}^3 }\right>
+\end{eqnarray}
+\noindent where $C_D$ is the Debye sound velocity, which is the directional average of the sound velocities $C_{\lambda}$ \citep{Grimvall1999}, $N$ is the number of atoms per molecule and $V$ is the volume. The resulting internal energy is thus
+\begin{eqnarray}
+E = \sum_m \int_0^{\infty} \left<E \right> D_m(\omega)\, d\omega = 3\frac{k_B^4 T^4 V}{2 \pi^2 \hbar^3 C_D^3} \int_0^{\Theta_D/T} {x^3 \over \left(e^x-1\right)}\, dx\ ,\\
+\end{eqnarray} 
+Heat capacity can then be found by differentiating with respect to temperature:
+\begin{eqnarray}
+\frac{C_V}{Nk_B} = 9 \left({T\over \Theta_D}\right)^3\int_0^{\Theta_D/T} {x^4 e^x\over\left(e^x-1\right)^2}\, dx\ ,\\
+\Theta_D \stackrel{\mathrm{def}}{=}\  {\hbar C_D \over k_B} \left( {6 \pi^2 N \over V} \right)^{1\over3}
+\end{eqnarray}
+\noindent $\Theta_D$ is the Debye temperature, which is roughly equal to the temperature where all modes are excited, and is a useful measure of the hardness of the lattice. At a given temperature, softening of materials (decreasing $\Theta_D$), for example through a volume increase on disordering, will tend to result in higher vibrational heat capacities. At temperatures much lower than $\Theta_D$,
+\begin{eqnarray}
+\frac{C_V}{Nk_B} \sim {12\pi^4\over5} \left({T\over \Theta_D}\right)^3, \\
+C_V \propto V \left({T \over C_D}\right)^3
+\end{eqnarray}
+\noindent At high temperatures, the heat capacity approaches the Petit-Dulong limit ($3Nk$), and so the excess heat capacity should fall to zero. Excess entropy therefore approaches a constant value at high temperatures. Estimated vibrational entropies of disordering in metal alloys may be as great as $0.5R$ \citep{TB1989; WC2002}, and therefore comparable with fully disordered configurational entropies ($\sqrt 2 R$). An increase in excess entropy with temperature must introduce an increase in the excess enthalpy, via the relation $\partial H / \partial T = T \partial S / \partial T$.

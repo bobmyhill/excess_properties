@@ -60,9 +60,6 @@ grestore
 % Insert the name of "your journal" with
 % \journalname{myjournal}
 %
-
-\usepackage{amsmath}    
-
 \begin{document}
 
 \title{Excess thermodynamic and elastic properties of mineral and melt solutions: modelling and implications for phase relations and seismic velocities}
@@ -85,7 +82,7 @@ grestore
 \maketitle
 
 \begin{abstract}
-
+Thermodynamic models of solid and liquid solutions are increasingly used to calculate phase relations and seismic properties over large pressure and temperature ranges. Research into mantle phase relations, subduction and differentiation of the early Earth frequently involves calculations spanning thousands of Kelvin and tens of gigapascals. Over such huge ranges, excess entropy and volume are unlikely to remain constant with respect to pressure and temperature. For example, absolute excess volumes usually decrease with increasing pressure. The implication is that to provide a good estimate of phase relations and seismic velocities, solution models must be flexible enough to accommodate changes in elastic and thermodynamic derivatives, such as the bulk modulus.
 
 This paper describes an extension to the subregular Margules mixing model which employs intermediate compounds to define the excess thermodynamic properties of solid solutions. Mathematical derivations are provided for excess thermodynamic properties (enthalpy, entropy, volume) and their pressure and temperature derivatives (bulk modulus, thermal expansion etc.). Heuristics are suggested for intermediate compounds where individual thermodynamic properties are poorly constrained.
 
@@ -97,149 +94,20 @@ Examples of pyroxene, garnet and melt solutions are presented, which show that a
 
 
 \section{Introduction}
-Thermodynamic models of solid and liquid solutions are increasingly used to calculate phase relations and seismic properties over large pressure and temperature ranges. Research into mantle phase relations, subduction and differentiation of the early Earth frequently involves calculations spanning thousands of Kelvin and tens of gigapascals. Over such huge ranges, excess entropy and volume are unlikely to remain constant with respect to pressure and temperature. For example, absolute excess volumes usually decrease with increasing pressure. The implication is that to provide a good estimate of phase relations and seismic velocities, solution models must be flexible enough to accommodate changes in elastic and thermodynamic derivatives, such as the bulk modulus.
-
 
 Solution models are a vital part of estimating phase relations at high pressure and temperatures. Typically, experimental estimates of excess Gibbs free energy across a binary solution are fit to some functional form (often quadratic, cubic). The variables for these functions are called interaction parameters, and generally have the form
 \begin{equation}
-  W_{ij}^{\mathcal{G}} = W_{ij}^{\mathcal{E}} + W_{ij}^{\mathcal{V}}P + W_{ij}^{\mathcal{S}}T
+  W_{ij}^{\mathcal{G}} = W_{ij}^{\mathcal{H}} + W_{ij}^{\mathcal{V}}P + W_{ij}^{\mathcal{S}}T
   \label{eqn:trad_form}
 \end{equation}
-\noindent The energetic $\mathcal{E}$, entropic $\mathcal{S}$ and volumetric $\mathcal{V}$ contributions to each parameter can be derived from calorimetry, phase relations and X-ray diffraction. These models have been extremely successful in describing the thermodynamic properties of solid solutions at crustal pressures and temperatures. Under such conditions, the linear pressure and temperature approximation in Equation \ref{eqn:trad_form} is perfectly reasonable, as deviations from constant volume and entropy excesses are small. However, thermodynamic models are now being extended over much larger pressure and temperature ranges \citep{SLB2011, HP2011, HHPH2013, DKS2013}. It is unlikely that excess properties will remain constant over these ranges. 
+\noindent The enthalpic $\mathcal{H}$, entropic $\mathcal{S}$ and volumetric $\mathcal{V}$ contributions to each parameter can be derived from calorimetry, phase relations and X ray diffraction. These models have been extremely successful in describing the thermodynamic properties of solid solutions at crustal pressures and temperatures. Under such conditions, the linear pressure and temperature approximation in Equation \ref{eqn:trad_form} is perfectly reasonable, as deviations from constant volume and entropy excesses are small. However, thermodynamic models are now being extended over much larger pressure and temperature ranges \citep{SLB2011, HP2011, HHPH2013, DKS2013}. It is unlikely that excess properties will remain constant over these ranges. For example, imagine two crystal lattices ($A_xO_y$ and $B_xO_y$) comprising cations with different ionic radii and field strengths. The properties of the cations (and anion) result in different unit cell volumes and compressibilities; typically the lattice with the larger cationic radius will have a large volume and smaller bulk modulus \citep{AA1970}. Now imagine a third lattice with intermediate composition ($[A_{1-z}B_z]_xO_y$). This lattice will typically exhibit distortions which result in a positive or negative excess volume, as a direct result of changing the average cation-anion bond length relative to the sum of the endmembers (Vegard's Law). It is reasonable to suggest that longer bonds will be more compressible, and that therefore a positive excess volume will result in a negative excess bulk modulus. The reverse is also true; shorter bonds are likely to be less compressible. Of course, compression in complex minerals is unlikely to be well-described by a simple isotropic change in bond length. Nevertheless, other compression mechanisms such as polyhedral rotation are likely to be affected in a similar way; in general, a smaller volume will reduce the flexibility of the structure.
 
 Thermoelastic models are also increasingly being used to interpret seismic data in terms of the temperature and composition of the deep Earth. Studies have focussed on Earth's mantle \citep[e.g.][]{DGDSBR2012, MCDRT2012, DCT2012} and core \citep[e.g.][]{SGGFMM2000,SFGMM2004}, and with the successful deployment of seismometers may soon extend to Mars \citep{GLZR2014}. Again, the bulk modulus imposed by the constant excess volume approximation may be a significant and unnecessary contributor to error in these studies, especially for metallic liquids, where excess volumes at low pressures are often very large. 
 
 The current study addresses the problems outlined above by adapting the subregular Margules mixing model, using intermediate compounds to describe the excess properties of the solid solution. The added flexibility comes with a large increase in the number of free parameters, so useful heuristics are also provided to estimate these where independent constraints are unavailable. The new formulation should enable a large number of studies on elastic properties of solid solutions to be incorporated into thermodynamic models. This study also highlights the need for high quality equation of state and seismic velocity data for intermediate compositions within solid solutions.
 
-\section{Observations and models of excess properties} 
-\subsection{Observations of excess properties and their causes}
-
-Solutions of materials which exchange ions with similar radii, charge and field strength tend to exhibit near-ideal mixing. In the geological sciences, we observe this behaviour for Fe$^{2+}$-Mg$^{2+}$ exchange, for example in the solid solutions fayalite-forsterite, ferrosilite-enstatite and almandine-pyrope. These solutions exhibit negligible excess volumes and entropies and excess energies of only a few kilojoules per mole (on a one-site basis). In contrast, exchange involving very different species is commonly associated with large excess properties. One such example is Mg$^{2+}$-Ca$^{2+}$, where the large ionic radius of Ca leads to excess energies in the tens of kilojoules (for example, in pyrope-grossular or enstatite-orthodiopside). 
-
-The majority of solution models take a form where excess Gibbs free energies (relative to ideal solutions) are either constant as a function of temperature and pressure, or are linear, such that interaction energies between phases $W_{ij}^{\mathcal{G}}$ take the form
-\begin{equation}
-  W_{ij}^{\mathcal{G}} = W_{ij}^{\mathcal{E}} + W_{ij}^{\mathcal{V}}P - W_{ij}^{\mathcal{S}}T
-  \label{eqn:trad_form}
-\end{equation}
-The entropic $\mathcal{S}$ and volumetric $\mathcal{V}$ terms are assumed to remain constant with temperature and pressure. Indeed, in the absence of calorimetric data, it is often assumed that $W_{ij}^{\mathcal{S}} = 0$. Over small pressure and temperature ranges, a linear approach is usually satisfactory for free energy calculations (for example, to calculate the width of a solvus or equilibrium with other phases). However, over large ranges, or where free energy derivatives such as bulk modulus are to be used, such an approach is probably unwise. 
-
-In structural terms, the properties of solid solutions are influenced by differences in bond character and structural flexibility between the endmembers and chemical interactions between the endmembers within the solution. Dealing first with the volumetric properties, a large mismatch in the volumes of sites involved in ion exchange between endmembers will tend to encourage positive excess volumes. For example, the ionic radii of 8-coordinated Mg$^{2+}$ and Ca$^{2+}$ are 0.89 \AA and 1.12 \AA \citep{Shannon1976}, which leads to a positive volume excess of 0.3-1.0 cm$^3$/mol in the pyrope-grossular solid solution. However, the correlation between site-size mismatch and excess volumes is far from clear. 6-coordinated Al$^{3+}$ - Fe$^{3+}$ exchange on the octahedral site in garnet (ionic sizes 0.535 \AA and 0.645 \AA) results in a negative excess volume in the grossular-andradite system. Closer inspection of the pyrope-grossular excess volumes reveals a small region of negative excess volume at the pyrope-rich side of the binary. This observation, coupled with similar observations in many other silicate and non-silicate systems, led \cite{NW1980} to argue that ordering generally results in asymmetric negative excesses which are concentrated toward the smaller-volume endmember. The asymmetry results from large ions being more difficult to squeeze into a small site than small ions into a large site, which is itself a consequence of the asymmetry in the potential energy of bonding between ions as a function of distance.
-
-Despite the highly dynamic nature of liquid solutions relative to solid solutions, similar effects are observed. Weakly interacting solutions (those with small enthalpies of solution) tend to have positive excess volumes, while more strongly interacting species (ones likely to undergo complexation) typically producing negative excess volumes. An interesting observation is that excess volumes are typically correlated with excess compressibilities \citep{FM1965}, in terms of magnitude and sense of asymmetry. A likely hypothesis is that the shorter bonds formed during complexation are also less compressible. It is to be expected that positively correlated excess volume and compressibility also be a characteristic of solid solutions. 
-
-\begin{itemize}
-\item XXXX Comment on thermal expansion here... $\alpha K_T$ is linear within solutions is based on the observation of \cite{WVCCJB2005}.
-\end{itemize}
-
-Vibrational contributions to heat capacity and entropy are also likely to be affected by non-ideality \citep[e.g.][]{WC2002}. To understand this, consider the Debye model of heat capacity \citep{Debye1912}, which successfully predicts the low temperature heat capacities of many minerals. This model treats lattice vibrations as phonons in a box, with the minimum phonon wavelength controlled by the atomic spacing \citep{AM1976, Grimvall1999}. Thermal energy is calculated from the phonon energy integrated over all the phonons in a lattice
-
-
-\begin{eqnarray}
-E = \sum_{m=1}^3 \int_0^{\infty} \left<E \right> g_m(\omega)\, d\omega, \\
-\left<E \right> = \hbar \omega \left<n \right>_{BE} = \frac{\hbar \omega}{\exp{\frac{\hbar \omega}{k_B T}} - 1}, \\
-g(\omega) = \left\{ \begin{aligned}
-    &\frac{3 N \omega^2}{\omega_D^3}, && \text{if}\ \omega \leq \omega_D\\
-    &0, && \text{otherwise}
-  \end{aligned}  \right. ,\\
-\omega_D^3 \stackrel{\mathrm{def}}{=}\ {6 \pi^2 c_D^3 N \over V},\\
-{3 \over c_D^3 } \stackrel{\mathrm{def}}{=}\ \left< \sum_{\lambda=1}^{3} {1 \over c_{\lambda}^3 }\right>
-\end{eqnarray} 
-\noindent where $\hbar$ and $k_B$ are the reduced Planck and Boltzmann constants, and $\left<n \right>_{BE}$ is the number of phonons with energy $\hbar \omega$ given by the Bose-Einstein relation. $g_m$ is the density of states for each phonon mode. Each phonon has three modes, or polarization states (two transverse and one longitudinal) which have identical densities of states. The Debye sound velocity $c_D$ is the directional average of the sound velocities $c_{\lambda}$ \citep{Grimvall1999}.
-
-The resulting thermal energy and heat capacity are
-\begin{eqnarray}
-\frac{E}{Nk_B} = 9 T \left({T\over \Theta_D}\right)^3\ \int_0^{\Theta_D/T} {\tau^3 \over \left(e^\tau-1\right)}\, d\tau\ ,\\
-\frac{C_V}{Nk_B} = 9 \left({T\over \Theta_D}\right)^3\int_0^{\Theta_D/T} {\tau^4 e^\tau\over\left(e^\tau-1\right)^2}\, d\tau\ ,\\
-\Theta \stackrel{\mathrm{def}}{=}\  {\hbar c_D \over k_B} \left( {6 \pi^2 N \over V} \right)^{1\over3}
-\end{eqnarray}
-\noindent $\Theta$ is the Debye temperature, which is roughly equal to the temperature where all modes are excited, and is a useful measure of the hardness of the lattice. At a given temperature, softening of materials (decreasing $\Theta$) will result in higher vibrational heat capacities (Figure \ref{fig:debye_excesses}). As $T \rightarrow \infty$, $\Delta S \rightarrow 3Nk_B\ln (\Theta_{1} / \Theta_{2})$. This additionally gives us the variation of $\Theta$ across an ideal solution at high temperature; if $x$ is the proportion of endmember $A$, then $\Theta = \Theta_A^x \Theta_B^{1-x}$.
-
-
-
-\begin{figure}[ht!]
-  \centering
-  \includegraphics[width=0.8\textwidth]{figures/debye_excesses}
-  \caption{Excess thermal properties as a function of temperature normalised to the Debye temperature, plotted for a reduction of 5\% in the Debye temperature.}
-  \label{fig:debye_excesses}
-\end{figure}
-
-XXXX Use\cite{BD2013} for Na$_{0.2}$K$_{0.8}$Cl ($\Theta = 288^{0.2} 235^{0.8} = 244.76$ K)
-
-Debye temperatures for geological materials are typically 600--1000 K, and so for temperatures over zeolite facies, the Debye model predicts that the vibrational contribution to excess entropy will be almost constant. Although the Debye model overestimates the density of states at high frequency, models designed to capture the high frequency behaviour (like the Einstein model) produce very similar curves. 
-
-The preceding discussion can be summarised by the following general rules:
-\begin{itemize}
-\item Endmember size mismatch generally results in positive excess volume, compressibility, entropy
-\item Ordering/complexation reduces the excess volume, entropy, energy and compressibility. The excess properties in both solids and liquids may become negative with sufficiently strong interactions.
-\item The effects of ordering on excess properties are asymmetric with composition when there is a large mismatch in ion size. Ordering (and reduction in excess properties) is more marked for compositions rich in the phase with the smaller ion \citep{NW1980}.
-\end{itemize}
-
-\subsection{Heuristics for excess properties}
-
-Based on the discussion in the previous section, some heuristics can be proposed which should provide a useful approximation to unknown excess properties when (for example) $V^{xs}$ is known:
-\begin{eqnarray}
-K_T = K_{T\textrm{ideal}} + a\\
-\alpha  = \frac{\alpha K_T}{K_{T\textrm{ideal}}}, \\
-\frac{\Theta}{\Theta_{\textrm{ideal}}} = \frac{V^{1 \over 6} K_T^{1 \over 2}}{V_{\textrm{ideal}}^{1 \over 6} K_{T\textrm{ideal}}^{1 \over 2}}
-\end{eqnarray}
-
-The ideal properties are given as implied by the ideal mixing model:
-\begin{eqnarray}
-V_{\textrm{ideal}} = 0.5\left(V_A + V_B\right),\\
-\frac{V_{\textrm{ideal}}}{K_{T\textrm{ideal}}} = 0.5 \left( \frac{V_{A}}{K_{T, A}} + \frac{V_{B}}{K_{T, B}} \right) \\
-\Theta_{\textrm{ideal}} = \sqrt { \Theta_A \Theta_B }
-\end{eqnarray}
-
-At high temperatures, the excess thermal properties will approach the following values:
-\begin{eqnarray}
-C_V^{xs} = 0, \\
-S_{vib}^{xs} = 3nR \ln \left( { \Theta_{\textrm{ideal}} \over \Theta} \right)
-\end{eqnarray}
-
-\begin{itemize}
-\item XXXX Use NaCl-KCl as a test
-\item XXXX Also plot up an excess volume vs excess entropy model (using the Benisek and Dachs examples as starting points?)
-\end{itemize}
-
-\begin{eqnarray}
-  K'_{T} = -\frac{\partial}{\partial P} \left (\mathcal{V}\left( \frac{\partial P}{\partial \mathcal{V}} \right)_T \right) \sim \mathcal{V} \left(\sum_i \frac{X_i \mathcal{V}_i}{K'_{Ti} + 1} \right)^{-1} - 1
-\end{eqnarray}
-
-If excess volumes are zero, it is likely that they will remain zero as temperatures and pressures increase. In this case, the bulk modulus is given by Equation \ref{K_T}, with the differential term equal to zero. In contrast, non-zero excess volumes are unlikely to remain constant with pressure and temperature. I suggest that, in the absence of other data a useful heuristic is $\left( \frac{\partial \mathcal{V}}{\partial P} \right)_T^{xs} \rightarrow 0$ as $P \rightarrow \infty$.
-
-A useful way to view the change in bulk modulus across a solid solution is to compare the excess bulk modulus to that implied by the $K_TV =$ \emph{constant} rule of thumb proposed by \cite{AA1970} to estimate the compressibility of endmembers based on their molar volumes. The heuristic we propose in this study predicts a larger excess term than that suggested by the rule of thumb, which we describe using a factor $\xi$:
-
-\begin{equation}
-  K_{T} \sim 0.5(K_{Ti} + K_{Tj}) + \xi \left(\frac{K_{Ti}\mathcal{V}_{j} + K_{Tj}\mathcal{V}_{j}}{2 \mathcal{V}} - 0.5(K_{Ti} + K_{Tj})\right)
-  \label{K_T_heuristic}
-\end{equation}
-\noindent Typically, a value of $\sim$6 provides a useful estimate of $\xi$.
-
-
-%In the absence of any solid solution data, \cite{BD2011,BD2012} propose using the following equation to estimate excess heat capacities:
-%\begin{eqnarray}
-%\mathcal{S}^{xs, max} = a \Delta \mathcal{V} + b n \Delta K_T, \\
-%\Delta \mathcal{V} = | V_{1} - V_{2} |, \\
-%\Delta K_T = \frac{V_{1} - V_{2}}{| V_{1} - V_{2} |} \left( K_{T1} - K_{T2} \right)
-%\end{eqnarray}
-%\noindent where $n$ is the moles of ions involved in the exchange per mole of material and a and b are constants fit to experimental data. Fits to silicates, oxides and metal solutions yield values of 2.926e5 J/K/m$^3$ and 7.20e-11 J/K/Pa/mol \citep{BD2011} or 2.505e5 J/K/m$^3$ and 2.73e-11 J/K/Pa/mol \citep{BD2012}. The hypothesis underlying such equations is similar to that in the preceding section; inflated structures lead to lower frequency lattice vibrations and therefore higher heat capacities. However, the dependence on bulk modulus depends on the assumption that different cation-anion bonds have an intrinsic bond strength, which controls the magnitude and sign of the volume excess due to ion size mismatch. At least in metallic systems, bond strength is highly dependent on chemical environment \citep{WC2000}. For this reason, a simple linear dependence on bulk modulus is unlikely to be a good predictor of excess properties, which may explain the large difference in estimates for $b$.
-
-% Estimated vibrational entropies of disordering in metal alloys may be as great as $0.5R$ \citep{TB1989; WC2002}, and therefore comparable with fully disordered configurational entropies ($\sqrt 2 R$). An increase in excess entropy with temperature must introduce an increase in the excess enthalpy, via the relation $\partial H / \partial T = T \partial S / \partial T$.
-
-% Studies of the properties of the NaCl-KCl solid solution are in good agreement with the observations and hypotheses presented here. Excess heat capacities are positive at low temperature, and excess vibrational entropies are therefore also positive and on the order of 2 J/K/mol in the center of the binary \citep{BD2013}. Excess volumes, compressibilities and thermal expansivities are also generally positive, although sombrero-shaped excesses are reported across the solid solution for the high pressure thermal expansivities of \citep{WVCJCB2004, WVCCJB2005}.
-
+\section{Theory} 
 \subsection{The Extended Subregular Margules (ESM) model}
-
-Thermodynamic models are increasingly being used for both equilibrium phase calculations and seismic modelling, so we require that any solution model should have the following properties:
-\begin{itemize}
-\item Thermodynamic properties (Gibbs free energy, enthalpy, entropy) behave in a physically reasonable way at high temperature and pressure 
-\item Thermoelastic properties (especially volume, bulk modulus) also behave in a reasonable way
-\item Thermodynamic activities and activity coefficients should be efficiently calculable from the model
-\end{itemize}
-
-These requirements place important restrictions on the types of model formulations which are appropriate for use under extreme conditions. In particular, the third requirement is most easily fulfilled if the non-configurational excess gibbs free energy maintains a simple mathematical form across the compositional range of the solid solution at any pressure and temperature of interest. For this reason, it is best to avoid formulations that explicitly define excess properties across the solid solution (for example, via quadratic forms for excess volume, thermal expansion, bulk modulus etc.), which may well result in complex patterns across the solid solution at high pressure. Instead, excess properties can be expressed as a function of excesses in the center of each binary, along with any asymmetries.
-
-
 The subregular Margules mixing model within a binary system $A$-$B$ approximates excess Gibbs free energies at any given pressure and temperature as a cubic function of composition \citep{HW1989}:
 \begin{equation}
   \mathcal{G}^{xs} = X_B (1-X_B) \left(W_{AB} X_B + W_{BA} (1-X_B) \right)
@@ -297,11 +165,28 @@ Finally, excess enthalpy is defined as
  \mathcal{H}^{xs} = \mathcal{G}^{xs} + T\mathcal{S}^{xs}
 \end{equation}
 
+\subsection{Heuristics}
+It is often the case that endmembers are particularly well studied, while the properties of the solid solution are constrained only by enthalpies of solution and volumes at room temperature and pressure. The remaining properties of the intermediate compounds must be estimated by the user. In this study, we suggest that the following heuristics be used:
+\begin{eqnarray}
+  \mathcal{S}_{ij} = 0.5(\mathcal{S}_i + \mathcal{S}_j) + \mathcal{S}^{\textrm{conf}}_{ij} \\
+  C_{P{ij}} = 0.5(C_{P{i}} + C_{P{j}}) \\
+  \alpha_{ij} = 0.5 \mathcal{V} \left(\frac{\alpha_i}{\mathcal{V}_i} + \frac{\alpha_j}{\mathcal{V}_j}\right)\\
+  K'_{T} = -\frac{\partial}{\partial P} \left (\mathcal{V}\left( \frac{\partial P}{\partial \mathcal{V}} \right)_T \right) \sim \mathcal{V} \left(\sum_i \frac{X_i \mathcal{V}_i}{K'_{Ti} + 1} \right)^{-1} - 1
+\end{eqnarray}
 
-\section{Examples}
+If excess volumes are zero, it is likely that they will remain zero as temperatures and pressures increase. In this case, the bulk modulus is given by Equation \ref{K_T}, with the differential term equal to zero. In contrast, non-zero excess volumes are unlikely to remain constant with pressure and temperature. I suggest that, in the absence of other data a useful heuristic is $\left( \frac{\partial \mathcal{V}}{\partial P} \right)_T^{xs} \rightarrow 0$ as $P \rightarrow \infty$.
+
+A useful way to view the change in bulk modulus across a solid solution is to compare the excess bulk modulus to that implied by the $K_TV =$ \emph{constant} rule of thumb proposed by \cite{AA1970} to estimate the compressibility of endmembers based on their molar volumes. The heuristic we propose in this study predicts a larger excess term than that suggested by the rule of thumb, which we describe using a factor $\xi$:
+
+\begin{equation}
+  K_{T} \sim 0.5(K_{Ti} + K_{Tj}) + \xi \left(\frac{K_{Ti}\mathcal{V}_{j} + K_{Tj}\mathcal{V}_{j}}{2 \mathcal{V}} - 0.5(K_{Ti} + K_{Tj})\right)
+  \label{K_T_heuristic}
+\end{equation}
+\noindent Typically, a value of $\sim$6 provides a useful estimate of $\xi$.
+
 Now that we have described the new model and heuristics related to the construction of intermediate compounds, we turn to a few geologically relevant examples. The models in this study are all implemented in the open software \emph{burnman}, a mineral physics toolkit written in python. The software, first described in \cite{CHRU2014}, was originally designed for seismic velocity calculations. It has since been augmented with thermodynamics functionality, including a range of different models for solid solutions.
 
-
+\section{Examples}
 \subsection{Pyroxene}
 Our first example is that of jadeite-aegirine pyroxene, an almost ideal solid solution (from a volumetric perspective). I use this model to illustrate that even when excess volumes are extremely small, excess bulk moduli are resolvable. The experimental data is that of \cite{NBLBT2006}, and the equation of state used is the Modified Tait \citep{HP2011}. The fit to the volume data is shown in Figure \ref{fig:PV_jadeite_aegirine}.
 
