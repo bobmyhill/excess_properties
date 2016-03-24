@@ -143,7 +143,7 @@ The resulting thermal energy and heat capacity are
 \begin{eqnarray}
 \frac{E}{Nk_B} = 9 T \left({T\over \Theta_D}\right)^3\ \int_0^{\Theta_D/T} {\tau^3 \over \left(e^\tau-1\right)}\, d\tau\ ,\\
 \frac{C_V}{Nk_B} = 9 \left({T\over \Theta_D}\right)^3\int_0^{\Theta_D/T} {\tau^4 e^\tau\over\left(e^\tau-1\right)^2}\, d\tau\ ,\\
-\Theta \stackrel{\mathrm{def}}{=}\  {\hbar c_D \over k_B} \left( {6 \pi^2 N \over V} \right)^{1\over3}
+\Theta \stackrel{\mathrm{def}}{=}\  {\hbar c_D \over k_B} \left( {6 \pi^2 N \over V} \right)^{1\over3} \label{debye}
 \end{eqnarray}
 \noindent $\Theta$ is the Debye temperature, which is roughly equal to the temperature where all modes are excited, and is a useful measure of the hardness of the lattice. At a given temperature, softening of materials (decreasing $\Theta$) will result in higher vibrational heat capacities (Figure \ref{fig:debye_excesses}). As $T \rightarrow \infty$, $\Delta S \rightarrow 3Nk_B\ln (\Theta_{1} / \Theta_{2})$. This additionally gives us the variation of $\Theta$ across an ideal solution at high temperature; if $x$ is the proportion of endmember $A$, then $\Theta = \Theta_A^x \Theta_B^{1-x}$.
 
@@ -169,24 +169,25 @@ The preceding discussion can be summarised by the following general rules:
 
 \subsection{Heuristics for excess properties}
 
-Based on the discussion in the previous section, some heuristics can be proposed which should provide a useful approximation to unknown excess properties when (for example) $V^{xs}$ is known:
+Based on the discussion in the previous section, some heuristics can be proposed which should provide useful approximations to unknown excess properties. When excesses are zero, the ideal model should be recovered, which (for a binary $A-B$) has the following properties:
 \begin{eqnarray}
-K_T = K_{T\textrm{ideal}} + a\\
-\alpha  = \frac{\alpha K_T}{K_{T\textrm{ideal}}}, \\
-\frac{\Theta}{\Theta_{\textrm{ideal}}} = \frac{V^{1 \over 6} K_T^{1 \over 2}}{V_{\textrm{ideal}}^{1 \over 6} K_{T\textrm{ideal}}^{1 \over 2}}
+V_{\textrm{ideal}} =& 0.5\left(V_A + V_B\right),\\
+\frac{V_{\textrm{ideal}}}{K_{T\textrm{ideal}}} =& 0.5 \left( \frac{V_{A}}{K_{T, A}} + \frac{V_{B}}{K_{T, B}} \right) \\
+\alpha V =& 0.5 \left( \alpha_A V_A + \alpha_B V_B \right) \\
+\Theta_{\textrm{ideal}} =& \sqrt { \Theta_A \Theta_B }, \\
+ K'_{T} =& -\frac{\partial}{\partial P} \left (\mathcal{V}\left( \frac{\partial P}{\partial \mathcal{V}} \right)_T \right) \sim 2 \mathcal{V} \left(\frac{\mathcal{V}_A}{K'_{TA} + 1} + \frac{\mathcal{V}_B}{K'_{TB} + 1}\right)^{-1} - 1
 \end{eqnarray}
 
-The ideal properties are given as implied by the ideal mixing model:
+Deviations from ideality, given a known value of excess volume, may be estimated as follows:
 \begin{eqnarray}
-V_{\textrm{ideal}} = 0.5\left(V_A + V_B\right),\\
-\frac{V_{\textrm{ideal}}}{K_{T\textrm{ideal}}} = 0.5 \left( \frac{V_{A}}{K_{T, A}} + \frac{V_{B}}{K_{T, B}} \right) \\
-\Theta_{\textrm{ideal}} = \sqrt { \Theta_A \Theta_B }
+K_T =& K_{T\textrm{ideal}} \left(\frac{V_{\textrm{ideal}}}{V}\right)^{7/3} \label{eqn:KV_relation} \\
+\alpha K_T =& \alpha_{\textrm{ideal}} K_{T\textrm{ideal}}, \\
+\frac{\Theta}{\Theta_{\textrm{ideal}}} =& \frac{V^{1/6} K_T^{1/2}}{V_{\textrm{ideal}}^{1/6} K_{T\textrm{ideal}}^{1/2}}(1+f) = \frac{V_{\textrm{ideal}}}{V}( 1 +f )
 \end{eqnarray}
-
-At high temperatures, the excess thermal properties will approach the following values:
+\noindent where $f$ accounts for non-Debye-like (non-volumetric) contributions to the vibrational entropy within the framework of the Debye model. The shortcomings of the Debye model should not be overly concerning, as we are predominently interested in the high temperature region, where excess entropy increases only slightly with temperature. The expression for the non-ideal bulk modulus derives from the assumption that excess volumes should approach zero as $P \rightarrow \infty$, calculated by equating the second-order Birch-Murnaghan equation of state at high pressure for the ideal and non-ideal compounds. The thermal expansion heuristic satisfies the observations made for the NaCl-KCl system \citep{WVCJCB2004, WVCCJB2005}. Finally, the modification to $\Theta$ is based on Equation \ref{debye}, making the further assumption that the Debye sound velocity is proportional to the bulk sound velocity ($\sqrt{K_T V / M}$). At high temperatures, the excess thermal properties will approach the following values:
 \begin{eqnarray}
-C_V^{xs} = 0, \\
-S_{vib}^{xs} = 3nR \ln \left( { \Theta_{\textrm{ideal}} \over \Theta} \right)
+C_V^{xs} =& 0, \\
+S_{vib}^{xs} =& 3nR \ln \left( { \Theta_{\textrm{ideal}} \over \Theta} \right)
 \end{eqnarray}
 
 \begin{itemize}
@@ -194,19 +195,37 @@ S_{vib}^{xs} = 3nR \ln \left( { \Theta_{\textrm{ideal}} \over \Theta} \right)
 \item XXXX Also plot up an excess volume vs excess entropy model (using the Benisek and Dachs examples as starting points?)
 \end{itemize}
 
+\section{A model for excess properties at high pressures and temperatures}
+
+We start with the two-parameter Murnaghan equation of state, and make the assumption that excess volumes (the difference between the ideal and non-ideal volumes) approaches zero at high pressure:
 \begin{eqnarray}
-  K'_{T} = -\frac{\partial}{\partial P} \left (\mathcal{V}\left( \frac{\partial P}{\partial \mathcal{V}} \right)_T \right) \sim \mathcal{V} \left(\sum_i \frac{X_i \mathcal{V}_i}{K'_{Ti} + 1} \right)^{-1} - 1
+\frac{V_P}{V_0} = \left( 1 + \frac{K'_0P}{K_0} \right)^{-1/K'_0}, \\
+V_{0, ideal} \left( \frac{K'_{0, ideal}}{K_{0, ideal}} \right)^{-1/K'_0} = V_{0} \left( \frac{K'_{0}}{K_{0}} \right)^{-1/K'_0}
 \end{eqnarray}
-
-If excess volumes are zero, it is likely that they will remain zero as temperatures and pressures increase. In this case, the bulk modulus is given by Equation \ref{K_T}, with the differential term equal to zero. In contrast, non-zero excess volumes are unlikely to remain constant with pressure and temperature. I suggest that, in the absence of other data a useful heuristic is $\left( \frac{\partial \mathcal{V}}{\partial P} \right)_T^{xs} \rightarrow 0$ as $P \rightarrow \infty$.
-
-A useful way to view the change in bulk modulus across a solid solution is to compare the excess bulk modulus to that implied by the $K_TV =$ \emph{constant} rule of thumb proposed by \cite{AA1970} to estimate the compressibility of endmembers based on their molar volumes. The heuristic we propose in this study predicts a larger excess term than that suggested by the rule of thumb, which we describe using a factor $\xi$:
+If we assume that the ideal and nonideal structures have the same $K'_0$, then Equation \ref{eqn:KV_relation} is satisfied. Of course, if we are only interested in the excess volume going to zero at high pressure, the value of $K'_0$ does not have to equal the value of $K'_0$ for the ideal structure. In this case, we rename the variable $K'_0^{xs}$, and can then write the following for the evolution of excess volume at high pressure (at the standard state temperature):
 
 \begin{equation}
-  K_{T} \sim 0.5(K_{Ti} + K_{Tj}) + \xi \left(\frac{K_{Ti}\mathcal{V}_{j} + K_{Tj}\mathcal{V}_{j}}{2 \mathcal{V}} - 0.5(K_{Ti} + K_{Tj})\right)
-  \label{K_T_heuristic}
+V^{xs} = V_0 \left(1 + \frac{K'_0^{xs} P}{K_0}\right)^{-1/{K'_0^{xs}}} - V_{0, ideal} \left(1 + \frac{K'_0^{xs} P}{K_{0, ideal}}\right)^{-1/{K'_0^{xs}}} 
 \end{equation}
-\noindent Typically, a value of $\sim$6 provides a useful estimate of $\xi$.
+
+To extend this equation of state to high temperatures, it is necessary to ensure that the equation of state does not fail at high temperatures (and reasonable pressures). This is a problem with equations of state which require integration along isobaric and then isothermal paths \citep[e.g.][]{HP2011}, but not with equations of state which require integration along isothermal and then isochoric paths \citep[e.g.][]{SLB2011}. Both fail at high temperatures and low pressures, but only the former requires integration in the 'forbidden zone' of the equation of state. To this end, we adopt the equation of state of \cite{SLB2011}, where:
+
+\begin{eqnarray}
+\gamma_0 = \frac{\alpha_{0, ideal} K_{0, ideal} V_0}{C_{V}}, \\
+q_0 = d \ln \gamma / d \ln V, \\
+\Theta = \Theta_0 \sqrt{1 + 6\gamma_0 f +0.5 \left(-12 + 36 \gamma_0 - 18 q_0 \right) \gamma_0 f^2}, \\
+G = E - TS + PV
+\end{eqnarray}
+
+
+
+%A useful way to view the change in bulk modulus across a solid solution is to compare the excess bulk modulus to that implied by the $K_TV =$ \emph{constant} rule of thumb proposed by \cite{AA1970} to estimate the compressibility of endmembers based on their molar volumes. The heuristic we propose in this study predicts a larger excess term than that suggested by the rule of thumb, which we describe using a factor $\xi$:
+
+%\begin{equation}
+% K_{T} \sim 0.5(K_{Ti} + K_{Tj}) + \xi \left(\frac{K_{Ti}\mathcal{V}_{j} + K_{Tj}\mathcal{V}_{j}}{2 \mathcal{V}} - 0.5(K_{Ti} + K_{Tj})\right)
+%  \label{K_T_heuristic}
+%\end{equation}
+%\noindent Typically, a value of $\sim$6 provides a useful estimate of $\xi$.
 
 
 %In the absence of any solid solution data, \cite{BD2011,BD2012} propose using the following equation to estimate excess heat capacities:
