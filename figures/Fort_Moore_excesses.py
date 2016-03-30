@@ -48,6 +48,22 @@ for i, datum in enumerate(zip(*data)):
     
     ratio_volume = volume/ideal_volume
     ratio_K_S = K_S/ideal_K_S
+
+    # Print array
+    printarray = np.array(zip(*[ratio_volume, ratio_K_S]))
+    if i==0:
+        print '>> -Sa0.3c -Ggreen'
+    elif i==8:
+        print '>> -Sd0.2c -Gblack'
+    elif i==9:
+        print '>> -Sh0.2c -Gpurple'
+    elif i==13:
+        print '>> -Ss0.2c -Gorange'
+    else:
+        print '>> -Sc0.1c -Gwhite'
+    for d in printarray:
+        if d[0] != 1.00:
+            print d[0], d[1]
     
     if i<40: #i != 10 and i != 11:
         K_S_data.extend(ratio_K_S)
@@ -78,9 +94,8 @@ volumes = np.linspace(0.96, 1.012, 101)
 #print popt[0], '+/-', pcov[0][0]
 #plt.plot(volumes, power(volumes, *popt), label='power law model, a='+str(popt[0])+'+/-'+str(pcov[0][0]))
 
-plt.plot(volumes, power(volumes, -15.), label='power law model, a=-15')
-plt.plot(volumes, power(volumes, -10.), label='power law model, a=-10')
-plt.plot(volumes, power(volumes, -5.), label='power law model, a=-5')
+plt.plot(volumes, power(volumes, -14.), label='power law model, a=-14')
+plt.plot(volumes, power(volumes, -7.), label='power law model, a=-7')
 plt.plot(volumes, power(volumes, -7./3.), label='power law model, a=-7/3')
 
 #plt.plot(V_data, K_S_data, marker='o', linestyle='None', label='Fort and Moore (1965)')
@@ -95,7 +110,14 @@ dVdPideal = xjdae*Vjdae[0]/Kjdae[0] + (1. - xjdae)*Vjdae[-1]/Kjdae[-1]
 Kidealjdae = Videaljdae/dVdPideal
 plt.plot(Vjdae/Videaljdae, Kjdae/Kidealjdae, marker='s', linestyle='None', label='Nestola et al., 2006 (jd-aeg)')
 
-
+# Print
+printarray = np.array(zip(*[Vjdae/Videaljdae, Kjdae/Kidealjdae]))
+print '>> -Sc0.2c -Gblue'
+for d in printarray:
+    if d[0] != 1.00:
+        print d[0], d[1]
+        
+'''
 xjdhd = np.array([1., 0.53, 0.24, 0.])
 Vjdhd = np.array([402.26, 424.90, 439.46, 450.84])
 Videaljdhd = xjdhd*402.26 + (1. - xjdhd)*450.84
@@ -103,6 +125,32 @@ Kjdhd = np.array([134.0, 120.7, 113.5, 108.8])
 dVdPideal = xjdhd*Vjdhd[0]/Kjdhd[0] + (1. - xjdhd)*Vjdhd[-1]/Kjdhd[-1]
 Kidealjdhd = Videaljdhd/dVdPideal
 plt.plot(Vjdhd/Videaljdhd, Kjdhd/Kidealjdhd, marker='s', linestyle='None', label='Nestola et al., 2007 (jd-hed)')
+'''
+
+xpy = np.array([1.0, 0.8, 0.6, 0.4, 0.2, 0.0])
+Vpygr = np.array([113.12, 115.82, 118.82, 121.33, 123.19, 125.23])
+Videalpygr = xpy*Vpygr[0]+ (1. - xpy)*Vpygr[-1]
+Kpygr = np.array([169.2, 159.1, 161.8, 160.7, 158.3, 169.7])
+dVdPideal = xpy*Vpygr[0]/Kpygr[0] + (1. - xpy)*Vpygr[-1]/Kpygr[-1]
+Kidealpygr = Videalpygr/dVdPideal
+plt.plot(Vpygr/Videalpygr, Kpygr/Kidealpygr, marker='s', linestyle='None', label='Du et al., 2015 (py-gr)')
+
+# Print
+printarray = np.array(zip(*[Vpygr/Videalpygr, Kpygr/Kidealpygr]))
+print '>> Sc0.2c -Gred'
+for d in printarray:
+    if d[0] != 1.00:
+        print d[0], d[1]
+    
+'''
+xpy = np.array([1.0, 0.8, 0.6, 0.4, 0.2, 0.0])
+Vpygr = np.array([249.05, 236.48, 221.90, 207.96, 193.78, 179.34])
+Videalpygr = xpy*Vpygr[0]+ (1. - xpy)*Vpygr[-1]
+Kpygr = np.array([175., 193., 192., 197., 219., 238.])
+dVdPideal = xpy*Vpygr[0]/Kpygr[0] + (1. - xpy)*Vpygr[-1]/Kpygr[-1]
+Kidealpygr = Videalpygr/dVdPideal
+plt.plot(Vpygr/Videalpygr, Kpygr/Kidealpygr, marker='s', linestyle='None', label='Walker et al., 2004 (hlt-syv)')
+'''
 
 
 plt.xlim(0.97, 1.03)

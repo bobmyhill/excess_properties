@@ -1,0 +1,52 @@
+
+    def entropy(self, pressure, temperature, volume, params):
+        """
+        Returns the entropy [J/K/mol] as a function of pressure [Pa]
+        and temperature [K].
+        """
+        a, b, c = mt.tait_constants(params)
+        Pth = self.__relative_thermal_pressure(temperature, params)
+
+        ksi_over_ksi_0 = einstein.heat_capacity_v(temperature, params['T_einstein'], params[
+                                                  'n']) / einstein.heat_capacity_v(params['T_0'], params['T_einstein'], params['n'])
+
+        dintVdpdx = (params['V_0'] * params['a_0'] * params['K_0'] * a * ksi_over_ksi_0) * (
+            np.power((1. + b * (pressure - params['P_0'] - Pth)), 0. - c) - np.power((1. - b * Pth), 0. - c))
+        return params['S_0'] + self.__intCpoverTdT(temperature, params) + dintVdpdx
+
+
+    def __intCpoverTdT(self, temperature, params):
+        """
+        Returns the thermal addition to the standard state entropy [J/K/mol]
+        at ambient pressure [Pa]
+        """
+        return (params['Cp'][0] * np.log(temperature) + params['Cp'][1] * temperature - 0.5 * params['Cp'][2] / np.power(temperature, 2.) - 2.0 * params['Cp'][3] / np.sqrt(temperature)) - (params['Cp'][0] * np.log(params['T_0']) + params['Cp'][1] * params['T_0'] - 0.5 * params['Cp'][2] / (params['T_0'] * params['T_0']) - 2.0 * params['Cp'][3] / np.sqrt(params['T_0']))
+
+    def __thermal_pressure(self, T, params):
+    
+        E_th = einstein.thermal_energy(T, params['T_einstein'], params['n'])
+        C_V0 = einstein.heat_capacity_v(
+            params['T_0'], params['T_einstein'], params['n'])
+        P_th = params['a_0'] * params['K_0'] / C_V0 * E_th
+        return P_th
+
+    def __relative_thermal_pressure(self, T, params):
+    
+        return self.__thermal_pressure(T, params) - \
+            self.__thermal_pressure(params['T_0'], params)
+
+
+Maxwell's relation implies that if the excess thermal expansion approaches zero at high pressure,
+so too does the change in excess entropy with respect to pressure
+-\left(\partial S / \partial P \right)_T = \left(\partial V / \partial T \right)_P
+
+
+Excess entropy does increase with pressure, as the excess thermal expansion is positive (the excess volume grows with temperature)
+
+
+Pth = 
+S(P) = S(1 bar) + V_0a_0K_0*a*(Cv/Cv_0)*((1+b(P-Pth))^c - (1-b*Pth)^-c)
+
+
+(dP/dT)_V = aK, so if aK is the same, then isochores are just shifted...
+so what does this mean for the gibbs free energy?

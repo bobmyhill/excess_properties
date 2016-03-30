@@ -99,7 +99,7 @@ Examples of pyroxene, garnet and melt solutions are presented, which show that a
 \section{Introduction}
 Thermodynamic models of solid and liquid solutions are increasingly used to calculate phase relations and seismic properties over large pressure and temperature ranges. Research into mantle phase relations, subduction and differentiation of the early Earth frequently involves calculations spanning thousands of Kelvin and tens of gigapascals. Over such huge ranges, excess entropy and volume are unlikely to remain constant with respect to pressure and temperature. For example, absolute excess volumes usually decrease with increasing pressure. The implication is that to provide a good estimate of phase relations and seismic velocities, solution models must be flexible enough to accommodate changes in elastic and thermodynamic derivatives, such as the bulk modulus.
 
-The majority of solution models take a form where excess Gibbs free energies (relative to ideal solutions) are either constant as a function of temperature and pressure, or are linear, such that interaction energies between phases $W_{ij}^{\mathcal{G}}$ take the form
+The majority of solution models take a form where excess Gibbs free energies (relative to ideal solutions) are either constant as a function of temperature and pressure, or are linear, such that interaction energies between phases $i$ and $j$ take the form
 \begin{equation}
   W_{ij}^{\mathcal{G}} = W_{ij}^{\mathcal{E}} + W_{ij}^{\mathcal{V}}P - W_{ij}^{\mathcal{S}}T
   \label{eqn:trad_form}
@@ -120,32 +120,25 @@ In structural terms, the properties of solid solutions are influenced by differe
 
 Despite the highly dynamic nature of liquid solutions relative to solid solutions, similar effects are observed. Weakly interacting solutions (those with small enthalpies of solution) tend to have positive excess volumes, while more strongly interacting species (ones likely to undergo complexation) typically producing negative excess volumes. An interesting observation is that excess volumes are typically correlated with excess compressibilities \citep{FM1965}, in terms of magnitude and sense of asymmetry. A likely hypothesis is that the shorter bonds formed during complexation are also less compressible. It is to be expected that positively correlated excess volume and compressibility also be a characteristic of solid solutions. 
 
-\begin{itemize}
-\item XXXX Comment on thermal expansion here... $\alpha K_T$ is linear within solutions is based on the observation of \cite{WVCCJB2005}.
-\end{itemize}
-
-Vibrational contributions to heat capacity and entropy are also likely to be affected by non-ideality \citep[e.g.][]{WC2002}. To understand this, consider the Debye model of heat capacity \citep{Debye1912}, which successfully predicts the low temperature heat capacities of many minerals. This model treats lattice vibrations as phonons in a box, with the minimum phonon wavelength controlled by the atomic spacing \citep{AM1976, Grimvall1999}. Thermal energy is calculated from the phonon energy integrated over all the phonons in a lattice
-
-
-\begin{eqnarray}
-E = \sum_{m=1}^3 \int_0^{\infty} \left<E \right> g_m(\omega)\, d\omega, \\
-\left<E \right> = \hbar \omega \left<n \right>_{BE} = \frac{\hbar \omega}{\exp{\frac{\hbar \omega}{k_B T}} - 1}, \\
-g(\omega) = \left\{ \begin{aligned}
-    &\frac{3 N \omega^2}{\omega_D^3}, && \text{if}\ \omega \leq \omega_D\\
-    &0, && \text{otherwise}
-  \end{aligned}  \right. ,\\
-\omega_D^3 \stackrel{\mathrm{def}}{=}\ {6 \pi^2 c_D^3 N \over V},\\
-{3 \over c_D^3 } \stackrel{\mathrm{def}}{=}\ \left< \sum_{\lambda=1}^{3} {1 \over c_{\lambda}^3 }\right>
-\end{eqnarray} 
-\noindent where $\hbar$ and $k_B$ are the reduced Planck and Boltzmann constants, and $\left<n \right>_{BE}$ is the number of phonons with energy $\hbar \omega$ given by the Bose-Einstein relation. $g_m$ is the density of states for each phonon mode. Each phonon has three modes, or polarization states (two transverse and one longitudinal) which have identical densities of states. The Debye sound velocity $c_D$ is the directional average of the sound velocities $c_{\lambda}$ \citep{Grimvall1999}.
-
-The resulting thermal energy and heat capacity are
+Vibrational contributions to heat capacity and entropy are also likely to be affected by non-ideality \citep[e.g.][]{WC2002}. To understand this, consider the Debye model of heat capacity \citep{Debye1912}, which successfully predicts the low temperature heat capacities of many minerals. This model treats lattice vibrations as phonons in a box, with the minimum phonon wavelength controlled by the atomic spacing \citep{AM1976, Grimvall1999}. %Thermal energy is calculated from the phonon energy integrated over all the phonons in a lattice.
+%\begin{eqnarray}
+%E = \sum_{m=1}^3 \int_0^{\infty} \left<E \right> g_m(\omega)\, d\omega, \\
+%\left<E \right> = \hbar \omega \left<n \right>_{BE} = \frac{\hbar \omega}{\exp{\frac{\hbar \omega}{k_B T}} - 1}, \\
+%g(\omega) = \left\{ \begin{aligned}
+%    &\frac{3 N \omega^2}{\omega_D^3}, && \text{if}\ \omega \leq \omega_D\\
+%    &0, && \text{otherwise}
+%  \end{aligned}  \right. ,\\
+%\omega_D^3 \stackrel{\mathrm{def}}{=}\ {6 \pi^2 c_D^3 N \over V},\\
+%{3 \over c_D^3 } \stackrel{\mathrm{def}}{=}\ \left< \sum_{\lambda=1}^{3} {1 \over c_{\lambda}^3 }\right>
+%\end{eqnarray} 
+%\noindent where $\hbar$ and $k_B$ are the reduced Planck and Boltzmann constants, and $\left<n \right>_{BE}$ is the number of phonons with energy $\hbar \omega$ given by the Bose-Einstein relation. $g_m$ is t%he density of states for each phonon mode. Each phonon has three modes, or polarization states (two transverse and one longitudinal) which have identical densities of states. The Debye sound velocity $c_D$ is the directional average of the sound velocities $c_{\lambda}$ \citep{Grimvall1999}.
+In the Debye model, thermal energy and heat capacity are found to be
 \begin{eqnarray}
 \frac{E}{Nk_B} = 9 T \left({T\over \Theta_D}\right)^3\ \int_0^{\Theta_D/T} {\tau^3 \over \left(e^\tau-1\right)}\, d\tau\ ,\\
 \frac{C_V}{Nk_B} = 9 \left({T\over \Theta_D}\right)^3\int_0^{\Theta_D/T} {\tau^4 e^\tau\over\left(e^\tau-1\right)^2}\, d\tau\ ,\\
-\Theta \stackrel{\mathrm{def}}{=}\  {\hbar c_D \over k_B} \left( {6 \pi^2 N \over V} \right)^{1\over3} \label{debye}
+\Theta_D \stackrel{\mathrm{def}}{=}\  {\hbar c_D \over k_B} \left( {6 \pi^2 N \over V} \right)^{1\over3} \label{debye}
 \end{eqnarray}
-\noindent $\Theta$ is the Debye temperature, which is roughly equal to the temperature where all modes are excited, and is a useful measure of the hardness of the lattice. At a given temperature, softening of materials (decreasing $\Theta$) will result in higher vibrational heat capacities (Figure \ref{fig:debye_excesses}). As $T \rightarrow \infty$, $\Delta S \rightarrow 3Nk_B\ln (\Theta_{1} / \Theta_{2})$. This additionally gives us the variation of $\Theta$ across an ideal solution at high temperature; if $x$ is the proportion of endmember $A$, then $\Theta = \Theta_A^x \Theta_B^{1-x}$.
+\noindent $\Theta$ is the Debye temperature, which is roughly equal to the temperature where all modes are excited, and is a useful measure of the hardness of the lattice. At a given temperature, softening of materials (decreasing $\Theta$) will result in higher vibrational heat capacities (Figure \ref{fig:debye_excesses}). As $T \rightarrow \infty$, $\Delta S \rightarrow 3Nk_B\ln (\Theta_{1} / \Theta_{2})$. Debye temperatures for geological materials are typically 600--1000 K, and so for temperatures over zeolite facies, the Debye model predicts that the excess vibrational entropy will be almost constant. % This additionally gives us the variation of $\Theta$ across an ideal solution at high temperature; if $x$ is the proportion of endmember $A$, then $\Theta = \Theta_A^x \Theta_B^{1-x}$.
 
 
 
@@ -156,9 +149,9 @@ The resulting thermal energy and heat capacity are
   \label{fig:debye_excesses}
 \end{figure}
 
-XXXX Use\cite{BD2013} for Na$_{0.2}$K$_{0.8}$Cl ($\Theta = 288^{0.2} 235^{0.8} = 244.76$ K)
+%XXXX Use\cite{BD2013} for Na$_{0.2}$K$_{0.8}$Cl ($\Theta = 288^{0.2} 235^{0.8} = 244.76$ K)
 
-Debye temperatures for geological materials are typically 600--1000 K, and so for temperatures over zeolite facies, the Debye model predicts that the vibrational contribution to excess entropy will be almost constant. Although the Debye model overestimates the density of states at high frequency, models designed to capture the high frequency behaviour (like the Einstein model) produce very similar curves. 
+%Debye temperatures for geological materials are typically 600--1000 K, and so for temperatures over zeolite facies, the Debye model predicts that the vibrational contribution to excess entropy will be almost constant. Although the Debye model overestimates the density of states at high frequency, models designed to capture the high frequency behaviour (like the Einstein model) produce very similar curves. 
 
 The preceding discussion can be summarised by the following general rules:
 \begin{itemize}
@@ -171,53 +164,59 @@ The preceding discussion can be summarised by the following general rules:
 
 Based on the discussion in the previous section, some heuristics can be proposed which should provide useful approximations to unknown excess properties. When excesses are zero, the ideal model should be recovered, which (for a binary $A-B$) has the following properties:
 \begin{eqnarray}
-V_{\textrm{ideal}} =& 0.5\left(V_A + V_B\right),\\
-\frac{V_{\textrm{ideal}}}{K_{T\textrm{ideal}}} =& 0.5 \left( \frac{V_{A}}{K_{T, A}} + \frac{V_{B}}{K_{T, B}} \right) \\
-\alpha V =& 0.5 \left( \alpha_A V_A + \alpha_B V_B \right) \\
-\Theta_{\textrm{ideal}} =& \sqrt { \Theta_A \Theta_B }, \\
- K'_{T} =& -\frac{\partial}{\partial P} \left (\mathcal{V}\left( \frac{\partial P}{\partial \mathcal{V}} \right)_T \right) \sim 2 \mathcal{V} \left(\frac{\mathcal{V}_A}{K'_{TA} + 1} + \frac{\mathcal{V}_B}{K'_{TB} + 1}\right)^{-1} - 1
+V_{\textrm{ideal}} =& x_AV_A + x_BV_B,\\
+\frac{V_{\textrm{ideal}}}{K_{T\textrm{ideal}}} =& x_A\frac{V_{A}}{K_{T, A}} + x_B\frac{V_{B}}{K_{T, B}}, \\
+\alpha V =& x_A\alpha_A V_A + x_B\alpha_B V_B 
 \end{eqnarray}
 
-Deviations from ideality, given a known value of excess volume, may be estimated as follows:
+Deviations from ideality, given a known value of excess volume, may be described as follows:
 \begin{eqnarray}
-K_T =& K_{T\textrm{ideal}} \left(\frac{V_{\textrm{ideal}}}{V}\right)^{7/3} \label{eqn:KV_relation} \\
-\alpha K_T =& \alpha_{\textrm{ideal}} K_{T\textrm{ideal}}, \\
-\frac{\Theta}{\Theta_{\textrm{ideal}}} =& \frac{V^{1/6} K_T^{1/2}}{V_{\textrm{ideal}}^{1/6} K_{T\textrm{ideal}}^{1/2}}(1+f) = \frac{V_{\textrm{ideal}}}{V}( 1 +f )
+K_T =& K_{T\textrm{ideal}} \left(\frac{V_{\textrm{ideal}}}{V}\right)^{\xi} \label{eqn:KV_relation} \\
+\alpha K_T |_{V0} =& \zeta \alpha_{\textrm{ideal}} K_{T\textrm{ideal}} |_{V0_ideal}
 \end{eqnarray}
-\noindent where $f$ accounts for non-Debye-like (non-volumetric) contributions to the vibrational entropy within the framework of the Debye model. The shortcomings of the Debye model should not be overly concerning, as we are predominently interested in the high temperature region, where excess entropy increases only slightly with temperature. The expression for the non-ideal bulk modulus derives from the assumption that excess volumes should approach zero as $P \rightarrow \infty$, calculated by equating the second-order Birch-Murnaghan equation of state at high pressure for the ideal and non-ideal compounds. The thermal expansion heuristic satisfies the observations made for the NaCl-KCl system \citep{WVCJCB2004, WVCCJB2005}. Finally, the modification to $\Theta$ is based on Equation \ref{debye}, making the further assumption that the Debye sound velocity is proportional to the bulk sound velocity ($\sqrt{K_T V / M}$). At high temperatures, the excess thermal properties will approach the following values:
-\begin{eqnarray}
-C_V^{xs} =& 0, \\
-S_{vib}^{xs} =& 3nR \ln \left( { \Theta_{\textrm{ideal}} \over \Theta} \right)
-\end{eqnarray}
+\noindent where $\xi$ describes how quickly the excess volumes decrease with increasing pressure, and $\zeta$ governs differences in thermal pressure (and therefore excess thermal properties). Figure \ref{fig:ksi} illustrates the range of $\xi$ for some liquid and solid solutions. Note that different compositions within the same solution often fall within a linear array. One notable exception is the pyrope-grossular data of \cite{DCW2015}, for which two compositions close to the endmembers displayed remarkably low bulk moduli (and therefore high values of $\xi$). The authors of this study did note a large degree of microstrain in these samples, which may not be representative of most geological materials. 
 
-\begin{itemize}
-\item XXXX Use NaCl-KCl as a test
-\item XXXX Also plot up an excess volume vs excess entropy model (using the Benisek and Dachs examples as starting points?)
-\end{itemize}
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[width=0.8\textwidth]{figures/VK_ratio}
+  \caption{Dependence of excess bulk moduli on excess volumes for a range of solid ($K_T$) and liquid ($K_S$) solutions.}
+  \label{fig:ksi}
+\end{figure}
+
+Without more information, $\zeta$=1 should be used, consistent with data for the halite-sylvite solid solution \citep{WVCJCB2004, WVCCJB2005}.
+
 
 \section{A model for excess properties at high pressures and temperatures}
-
-We start with the two-parameter Murnaghan equation of state, and make the assumption that excess volumes (the difference between the ideal and non-ideal volumes) approaches zero at high pressure:
-\begin{eqnarray}
-\frac{V_P}{V_0} = \left( 1 + \frac{K'_0P}{K_0} \right)^{-1/K'_0}, \\
+\subsection{Model formulation for single compositions within a solution}
+Starting with the two-parameter Murnaghan equation of state:
+\begin{equation}
+  \frac{V_P}{V_0} = \left( 1 + \frac{K'_0P}{K_0} \right)^{-1/K'_0}
+\end{equation}
+In this study, it is assumed that excess volumes and non-configurational entropies approach zero as $P \rightarrow \infty$:
+\begin{equation}
 V_{0, ideal} \left( \frac{K'_{0, ideal}}{K_{0, ideal}} \right)^{-1/K'_0} = V_{0} \left( \frac{K'_{0}}{K_{0}} \right)^{-1/K'_0}
-\end{eqnarray}
-If we assume that the ideal and nonideal structures have the same $K'_0$, then Equation \ref{eqn:KV_relation} is satisfied. Of course, if we are only interested in the excess volume going to zero at high pressure, the value of $K'_0$ does not have to equal the value of $K'_0$ for the ideal structure. In this case, we rename the variable $K'_0^{xs}$, and can then write the following for the evolution of excess volume at high pressure (at the standard state temperature):
+\end{equation}
+If we assume that the ideal and nonideal structures have the same $K'_0$, then Equation \ref{eqn:KV_relation} is satisfied, with $\xi=K'_0$. If we are only interested in the excess volume going to zero at high pressure, the value of $K'_0$ does not have to equal the value of $K'_0$ for the ideal structure.
+
 
 \begin{equation}
-V^{xs} = V_0 \left(1 + \frac{K'_0^{xs} P}{K_0}\right)^{-1/{K'_0^{xs}}} - V_{0, ideal} \left(1 + \frac{K'_0^{xs} P}{K_{0, ideal}}\right)^{-1/{K'_0^{xs}}} 
+V^{xs} = V_0 \left(1 + \frac{\xi \left(P - P_{th} - P_0\right)}{K_0}\right)^{-1/\xi} - V_{0, ideal} \left(1 + \frac{\xi \left(P - P_{th} - P_0\right)}{K_{0, ideal}}\right)^{-1/\xi} 
 \end{equation}
 
-To extend this equation of state to high temperatures, it is necessary to ensure that the equation of state does not fail at high temperatures (and reasonable pressures). This is a problem with equations of state which require integration along isobaric and then isothermal paths \citep[e.g.][]{HP2011}, but not with equations of state which require integration along isothermal and then isochoric paths \citep[e.g.][]{SLB2011}. Both fail at high temperatures and low pressures, but only the former requires integration in the 'forbidden zone' of the equation of state. To this end, we adopt the equation of state of \cite{SLB2011}, where:
+To extend this model to high temperatures, we integrate along an isothermal path to infinite pressure, along an isobaric path to the temperature of interest, and then back down an isothermal path to the pressure of interest. We assume that the form of the excess volume curve is the same at both temperatures (i.e., that the excess bulk modulus and $\xi$ do not vary along the $V_0$ isochore). The heuristic parameter $\zeta$ provides an equation of state-independent method to calculate the thermal pressure. The calculation takes the form:
+
 
 \begin{eqnarray}
-\gamma_0 = \frac{\alpha_{0, ideal} K_{0, ideal} V_0}{C_{V}}, \\
-q_0 = d \ln \gamma / d \ln V, \\
-\Theta = \Theta_0 \sqrt{1 + 6\gamma_0 f +0.5 \left(-12 + 36 \gamma_0 - 18 q_0 \right) \gamma_0 f^2}, \\
-G = E - TS + PV
+  G = E - TS + PV
 \end{eqnarray}
 
-
+Figure \ref{fig:xs_model} shows the excess volumes and entropies predicted for the pyrope-grossular join using the current model.
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[width=0.8\textwidth]{figures/VK_ratio}
+  \caption{Pyrope-grossular. Note the similarities in the form of the excess entropy to that shown in Figure \ref{debye_excesses}.}
+  \label{fig:xs_model}
+\end{figure}
 
 %A useful way to view the change in bulk modulus across a solid solution is to compare the excess bulk modulus to that implied by the $K_TV =$ \emph{constant} rule of thumb proposed by \cite{AA1970} to estimate the compressibility of endmembers based on their molar volumes. The heuristic we propose in this study predicts a larger excess term than that suggested by the rule of thumb, which we describe using a factor $\xi$:
 
@@ -240,75 +239,26 @@ G = E - TS + PV
 
 % Studies of the properties of the NaCl-KCl solid solution are in good agreement with the observations and hypotheses presented here. Excess heat capacities are positive at low temperature, and excess vibrational entropies are therefore also positive and on the order of 2 J/K/mol in the center of the binary \citep{BD2013}. Excess volumes, compressibilities and thermal expansivities are also generally positive, although sombrero-shaped excesses are reported across the solid solution for the high pressure thermal expansivities of \citep{WVCJCB2004, WVCCJB2005}.
 
-\subsection{The Extended Subregular Margules (ESM) model}
-
-Thermodynamic models are increasingly being used for both equilibrium phase calculations and seismic modelling, so we require that any solution model should have the following properties:
-\begin{itemize}
-\item Thermodynamic properties (Gibbs free energy, enthalpy, entropy) behave in a physically reasonable way at high temperature and pressure 
-\item Thermoelastic properties (especially volume, bulk modulus) also behave in a reasonable way
-\item Thermodynamic activities and activity coefficients should be efficiently calculable from the model
-\end{itemize}
-
-These requirements place important restrictions on the types of model formulations which are appropriate for use under extreme conditions. In particular, the third requirement is most easily fulfilled if the non-configurational excess gibbs free energy maintains a simple mathematical form across the compositional range of the solid solution at any pressure and temperature of interest. For this reason, it is best to avoid formulations that explicitly define excess properties across the solid solution (for example, via quadratic forms for excess volume, thermal expansion, bulk modulus etc.), which may well result in complex patterns across the solid solution at high pressure. Instead, excess properties can be expressed as a function of excesses in the center of each binary, along with any asymmetries.
-
+\subsection{Formulation for solutions using the subregular (Margules) mixing model}
 
 The subregular Margules mixing model within a binary system $A$-$B$ approximates excess Gibbs free energies at any given pressure and temperature as a cubic function of composition \citep{HW1989}:
 \begin{equation}
-  \mathcal{G}^{xs} = X_B (1-X_B) \left(W_{AB} X_B + W_{BA} (1-X_B) \right)
+  \mathcal{G}^{xs} = X_B (1-X_B) \left(W^{\mathcal{G}}_{AB} X_B + W^{\mathcal{G}}_{BA} (1-X_B) \right)
   \label{eqn:subreg}
 \end{equation}
 
-In the special case that $W_{AB} = W_{BA}$, the function is a quadratic. I can define the Gibbs interaction parameter in terms of the Gibbs free energy of a 50:50 intermediate compound ($AB$) and the endmembers $A$ and $B$:
-
+In the special case that $W_{AB} = W_{BA}$, the function is a quadratic with a maximum excess free energy of 0.25$W_{AB}$. It is therefore reasonable to use the following expression:
 \begin{equation}
-  W^{\mathcal{G}}_{AB} = 4(\mathcal{G}_{AB} + T\mathcal{S}^{\textrm{conf}}_{AB}) - 2(\mathcal{G}_A + \mathcal{G}_B)
+W^{\mathcal{G}}_{AB} = 4 G^{xs}_{AB}
 \end{equation}
-\noindent where $\mathcal{S}^{\textrm{conf}}_{AB}$ is the configurational entropy of the intermediate compound. In the more general case that $W_{AB} \neq W_{BA}$, Equation \ref{eqn:subreg} can be thought of as two symmetric interaction parameters with contributions that depend on the composition. Two intermediate compounds ($AB$ and $BA$) are then required to describe the properties of the solution (Figure \ref{fig:schematic}).
-
-\begin{figure}[ht!]
-  \centering
-  %\includegraphics[width=0.8\textwidth]{figures/schematic}
-  \caption{Schematic illustration of excess energies within a binary subregular solution model.}
-  \label{fig:schematic}
-\end{figure}
+\noindent where $G^{xs}_{AB}$ is derived from the model described in the previous section. For a symmetric solution, $G^{xs}_{AB}$ thus describes the excess Gibbs free energy of the compound $A_{0.5}B_{0.5}$.
 
 
 Expanding the subregular solution model beyond a binary system, the excess nonconfigurational Gibbs free energy is \citep{HW1989} 
 \begin{equation}
-  \mathcal{G}^{xs} = \sum_{i=1}^n \sum_{j>1}^n X_i X_j \left ( W_{ij} X_j + W_{ji} X_i + 0.5 (W_{ij} + W_{ji}) \sum_k^n (1-\delta_{ik})(1-\delta_{jk}) X_k \right)
+  \mathcal{G}^{xs} = \sum_{i=1}^n \sum_{j>1}^n X_i X_j \left ( W^{\mathcal{G}}_{ij} X_j + W^{\mathcal{G}}_{ji} X_i + 0.5 (W^{\mathcal{G}}_{ij} + W^{\mathcal{G}}_{ji}) \sum_k^n (1-\delta_{ik})(1-\delta_{jk}) X_k \right)
   \label{xs}
 \end{equation}
-
-Each of the individual $W_{ij}$ terms in Equation \ref{xs} can be determined via the properties of an intermediate compound, just as described in the binary $A$-$B$ system (Equation \ref{eqn:subreg}). The properties of the solid solution with composition $\mathbf{X}$ are then defined as follows:
-
-\begin{eqnarray}
-\mathcal{G} = \sum_i X_i \mathcal{G}_i + \mathcal{G}^{xs} \\
-\mathcal{H} = \sum_i X_i \mathcal{H}_i + \mathcal{H}^{xs} \\
-\mathcal{S} = \sum_i X_i \mathcal{S}_i + \mathcal{S}^{xs} \\
-\mathcal{V} = \sum_i X_i \mathcal{V}_i + \mathcal{V}^{xs} \\
-C_P = \sum_i X_i C_P  + T \left( \frac{\partial \mathcal{S}}{\partial T} \right)_P^{xs} \\
-\alpha = \frac{1}{\mathcal{V}} \left ( \sum_i X_i \alpha_i \mathcal{V}_i + \left( \frac{\partial \mathcal{V}}{\partial T} \right)_P^{xs} \right) \label{alpha} \\
-K_T = \frac{\mathcal{V}}{\sum_i \frac{X_i \mathcal{V}_i }{K_{Ti}} - \left( \frac{\partial \mathcal{V}}{\partial P} \right)_T^{xs} } \label{K_T} \\
-C_V = C_P - \mathcal{V} T \alpha^2 K_T \\
-K_S = K_T \frac{C_P}{C_V} \\
-\gamma = \frac{\alpha K_T \mathcal{V}}{C_V}   
-\end{eqnarray}
-
-With the exception of the enthalpy excess, excess terms ($\mathcal{S}^{xs}$, $\mathcal{V}^{xs}$ etc) are derived in the same way as the excess Gibbs free energy (Equation \ref{xs}), with interaction terms defined as follows:
-
-\begin{eqnarray}
-  W^{\mathcal{S}}_{ij} = 4 (\mathcal{S}_{ij} - \mathcal{S}^{\textrm{conf}}_{ij}) - 2(\mathcal{S}_i + \mathcal{S}_j) \\
-  W^{\mathcal{V}}_{ij} = 4 \mathcal{V}_{ij} - 2(\mathcal{V}_i + \mathcal{V}_j) \\
-  W^{\partial\mathcal{V}/\partial P}_{ij} = -4 \mathcal{V}_{ij}/K_{T{ij}} + 2(\mathcal{V}_{i}/K_{T{i}} + \mathcal{V}_{j}/K_{T{j}}) \\
-  W^{\partial\mathcal{V}/\partial T}_{ij} = 4 \alpha_{ij} \mathcal{V}_{ij} - 2(\alpha_{i} \mathcal{V}_i + \alpha_{j} \mathcal{V}_j) \\
-  W^{\partial\mathcal{S}/\partial T}_{ij} = \frac{4 C_{P{ij}} - 2(C_{P{i}} + C_{P{j}})}{T} 
-\end{eqnarray}
-
-Finally, excess enthalpy is defined as
-\begin{equation}
- \mathcal{H}^{xs} = \mathcal{G}^{xs} + T\mathcal{S}^{xs}
-\end{equation}
-
 
 \section{Examples}
 Now that we have described the new model and heuristics related to the construction of intermediate compounds, we turn to a few geologically relevant examples. The models in this study are all implemented in the open software \emph{burnman}, a mineral physics toolkit written in python. The software, first described in \cite{CHRU2014}, was originally designed for seismic velocity calculations. It has since been augmented with thermodynamics functionality, including a range of different models for solid solutions.
